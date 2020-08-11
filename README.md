@@ -1,2 +1,2 @@
 # ac-gifos
-Gifs web app
+Acamica Gif wew app Project
