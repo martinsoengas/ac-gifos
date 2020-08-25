@@ -5,42 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/0be0f78a4a.js" crossorigin="anonymous"></script>
+    <link href="https://kit-free.fontawesome.com/releases/latest/css/free.min.css" media="all" rel="stylesheet">
     <title>GIFOS</title>
 </head>
 <body>
-    <nav>
+    <!-- nav start -->
+    <nav id="navbar">
         <img src="img/logo-mobile.svg" alt="logo image">
         <img id="burger" src="img/burger.svg" alt="menu image">
         <ul id="nav-ul" class="nav-ul">
-            <li><a href="#">Modo Nocturno</a></li>
-            <div class="menu-line"></div>
+            <li><a id="dark-theme-button" href="#">Modo Nocturno</a></li>
+                <div class="menu-line"></div>
             <li><a href="#">Favoritos</a></li>
-            <div class="menu-line"></div>
+                <div class="menu-line"></div>
             <li><a href="#">Mis GIFOS</a></li>
-            <div class="menu-line"></div>
-
+                <div class="menu-line"></div>
         </ul>
     </nav>
+    <!-- nav end -->
     <main>
-        <div class="container">
+        <!-- starts landing -->
+        <div id="container-first" class="container">
             <p>Inspírate, busca, guarda, y crea los mejores <span>GIFOS</span></p>
         </div>
         <div class="container">
             <img id="friends-image" src="img/ilustra_header.svg" alt="Friends image">
         </div>
-        <div class="container-search">
-            <input type="search" name="search" id="search" placeholder="Busca GIFOS y más">
-            <a id="icon-search" href="http://www.google.com.ar"><img src="img/icon-search.svg" alt="icon search"></a>
+        <!-- ends landing -->
+        <!-- starts search input with "trendings" -->
+        <div id="container-search" class="container-search">
+            <input type="search" name="search" id="search" class="search" placeholder="Busca GIFOS y más">
+            <a href="http://www.google.com.ar"><img id="icon-search" src="img/icon-search.svg" alt="icon search"></a>
         </div>
         <div class="container">
             <p class="trending-title">Trending:</p>
             <p class="trending-words">Reactions, Entertainment, Sports, Stickers, Artists</p>
         </div>
-
+        <!-- end search input and "trendings" -->
+        <!-- little bar that only appears when search is active -->
         <div class="little-bar"></div>
-    
-        
+        <!-- end of little bar -->
+        <!-- search results show -->
+        <div class="search-results-container">
+            <div id="search-results"></div>
+        </div>
+        <!-- end of search results -->
+        <!-- start trends carousel -->
+        <div id="container-trending" class="container-trending">
+            <p class="trends">Trending GIFOS</p>
+            <p class="trends-subtitle">Mira los últimos <br>
+                                    GIFOS de nuestra comunidad.</p>
+            <div class="trends-carousel-container">
+                <div id="trends-carousel">
+                    <!-- here goes trending carousel in js -->
+                </div>
+            </div>
+        </div>
+        <!-- end trends carousel -->
     </main>
+    <footer>
+        <div class="container-footer">
+            <p class="container-footer-p">Compartir en:</p>
+            <div class="social-items">
+                <a href="http://www.facebook.com" target="_blank">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                <a href="http://www.twitter.com" target="_blank">
+                     <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+                <a href="http://www.instagram.com" target="_blank">
+                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                </a>
+            </div>        
+        </div>
+        <div class="copyright">
+            <p class="copyright-p">© GIFOS 2020 All Rights Reserved.</p>
+        </div>
+    </footer>
+    <!-- scripts -->
     <script src="js/script.js"></script>
 </body>
 </html>
