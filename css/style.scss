@@ -11,13 +11,10 @@ $textMonserrat: 'Montserrat', sans-serif;
     font-family: $textMonserrat;
     font-weight: 700;
     color: $colorPrimary;
-  }
-
-.border-top {
-    width: 100%;
-    height: 5px;
-    background-color: $colorPrimary;
 }
+
+
+
 
 nav {
     border-top: 5px solid $colorPrimary;
@@ -27,6 +24,8 @@ nav {
     justify-content: space-between;
     padding: 29px 22px 26px 17px;
 }
+
+
 
 .nav-ul {
     display: flex;
@@ -99,16 +98,17 @@ nav {
     margin: 0 auto;
     margin-bottom: 31px;
     width: 90%;
-    background: #FFFFFF;
+    background: transparent;
     border: 1px solid #572EE5;
     border-radius: 27px;
-    padding: 15px 20px 13px 55px;
-    
+    padding: 15px 20px 13px 55px;  
 }
 
-#search{
+
+
+.search{
     width: 90%;
-    background: #FFFFFF;
+    background: transparent;
     color: #6B7989;
     font-family: $textRoboto;
     font-weight: 400;
@@ -131,14 +131,100 @@ nav {
     margin-bottom: 45px;
 }
 
+.container-trending{
+    background-color: #F3F5F8;
+    
+}
+
+.trends{
+    font-size: 20px;
+    text-align: center;
+    padding-top: 46px;
+}
+
+.trends-subtitle{
+    font-family: $textRoboto;
+    font-size: 16px;
+    color: #000000;
+    text-align: center;
+    line-height: 23px;
+    font-weight: 400;
+    padding-top: 7px;
+    padding-bottom: 32px;
+}
+
+.container-footer-p{
+    text-align: center;
+    margin-top: 47px;
+    font-family: $textRoboto;
+    font-weight: 400;
+    font-size: 15px;
+    color: #000000;
+    letter-spacing: 0;
+    margin-bottom: 24px;
+}
+
+.social-items{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 25%;
+    margin-bottom: 48px;
+}
+
+.social-items a i{
+    color: #CDD6E0;
+    font-size: 19px;
+}
+
+.copyright-p{
+    text-align: center;
+    font-family: $textRoboto;
+    font-weight: 400;
+    font-size: 14px;
+    color: #000000;
+    letter-spacing: 0;
+    line-height: 20px;
+    padding-bottom: 23px;
+    border-bottom: 5px solid $colorPrimary;
+}
+
 .little-bar{
     display: none;
     margin: 0 auto;
     opacity: 0.5;
     border-top: 1px solid #9CAFC3;
     width: 40%;
-    
 }
+
+// DARK MODE STARTS
+
+.dark-body{
+    background-color: #37383C;
+}
+
+.dark-text{
+    color: white;
+}
+
+.dark-border-top {
+    border-top: 5px solid #000000;
+}
+
+.dark-container-search {
+    border: 1px solid white;
+}
+
+.dark-container-trending {
+    background-color: #222326;
+}
+
+
+
+
+
+
 
 @media screen and (min-width: 376px){
     nav {
@@ -153,3 +239,5 @@ nav {
         display: none;
     }
 }
+
+
