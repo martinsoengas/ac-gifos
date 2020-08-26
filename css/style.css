@@ -57,6 +57,7 @@ nav {
 
 #burger {
   cursor: pointer;
+  fill: red;
 }
 
 .nav-ul {
@@ -64,7 +65,7 @@ nav {
   width: 100%;
 }
 
-.nav-ul.show {
+.show {
   position: absolute;
   top: 100px;
   left: 0;
@@ -204,6 +205,9 @@ nav {
   letter-spacing: 0;
   line-height: 20px;
   padding-bottom: 23px;
+}
+
+footer {
   border-bottom: 5px solid #572EE5;
 }
 
@@ -227,12 +231,21 @@ nav {
   border-top: 5px solid #000000;
 }
 
+.dark-border-bottom {
+  border-bottom: 5px solid #000000;
+}
+
 .dark-container-search {
   border: 1px solid white;
 }
 
 .dark-container-trending {
   background-color: #222326;
+}
+
+.dark-nav-ul {
+  background-color: #000000;
+  opacity: 1;
 }
 
 @media screen and (min-width: 376px) {
