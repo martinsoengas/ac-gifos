@@ -155,6 +155,10 @@ body {
   position: relative;
 }
 
+.icon-onsearch {
+  display: none;
+}
+
 #suggestions-list {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -568,6 +572,13 @@ footer {
   }
   .container .trending-words {
     margin-bottom: 95px;
+  }
+  .icon-onsearch {
+    display: block;
+    visibility: hidden;
+  }
+  .icon-onsearch-visible {
+    visibility: visible;
   }
   .search-results {
     width: 80%;

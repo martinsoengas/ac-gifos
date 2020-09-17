@@ -39,6 +39,7 @@ async function searchSuggestions(searchTerm) {
     const hrLine = document.createElement("hr");
     hrLine.classList.add("hr-line");
     suggestionsList.appendChild(hrLine);
+    iconOnSearch.classList.add("icon-onsearch-visible");
 
 
     for (let i = 0; i <= 3; i++) {
@@ -62,6 +63,7 @@ async function searchSuggestions(searchTerm) {
   } else {
     suggestionsList.innerHTML = "";
     searchResults.innerHTML = "";
+    iconOnSearch.classList.remove("icon-onsearch-visible");
   }
 }
 
