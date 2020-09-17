@@ -209,10 +209,24 @@ input {
   margin-bottom: 78px;
 }
 
+.p-search-title {
+  font-family: $textMonserrat;
+  font-weight: 700;
+  font-size: 25px;
+  color: $colorPrimary;
+  text-align: center;
+  line-height: 40px;
+  margin-bottom: 38px;
+}
+
 .img-gifs {
   margin: auto;
   width: 156px;
   height: 120px;
+}
+
+#view-more-container {
+  text-align: center;
 }
 
 .container .trending-words {

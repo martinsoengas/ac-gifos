@@ -243,10 +243,24 @@ input {
   margin-bottom: 78px;
 }
 
+.p-search-title {
+  font-family: Montserrat, sans-serif;
+  font-weight: 700;
+  font-size: 25px;
+  color: #572ee5;
+  text-align: center;
+  line-height: 40px;
+  margin-bottom: 38px;
+}
+
 .img-gifs {
   margin: auto;
   width: 156px;
   height: 120px;
+}
+
+#view-more-container {
+  text-align: center;
 }
 
 .container .trending-words {
