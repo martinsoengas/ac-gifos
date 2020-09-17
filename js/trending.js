@@ -35,7 +35,6 @@ async function searchExecute(searchTerm) {
         let gifImgs = e.images.original.url;
         const gifImgContainer = document.createElement('img')
         gifImgContainer.classList.add('img-gifs')
-        gifImgContainer.setAttribute('loading', 'lazy')
         gifImgContainer.setAttribute('src', gifImgs)
         searchResults.appendChild(gifImgContainer)
       });

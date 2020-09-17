@@ -7,7 +7,7 @@
         <g id="00-UI-Kit" transform="translate(-132.000000, -3032.000000)">
             <g id="CTA-ver-mas" transform="translate(132.000000, 3032.000000)">
                 <rect id="Rectangle-3" stroke="#572EE5" x="0.5" y="0.5" width="126" height="49" rx="24.5"></rect>
-                <text id="ver-todos" font-family="Montserrat-Bold, Montserrat" font-size="13" font-weight="bold" fill="#572EE5">
+                <text id="ver-todos" font-family="Montserrat, sans-serif" font-size="13" font-weight="700" fill="#572EE5">
                     <tspan x="32.839" y="31">VER MÁS</tspan>
                 </text>
             </g>
