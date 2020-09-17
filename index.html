@@ -1,149 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/0be0f78a4a.js" crossorigin="anonymous"></script>
-    <link href="https://kit-free.fontawesome.com/releases/latest/css/free.min.css" media="all" rel="stylesheet">
-    <title>GIFOS</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Roboto:wght@400;500;700;900&display=swap"
+    rel="stylesheet" />
+  <title>GIFOS</title>
 </head>
+
 <body>
-    <!-- nav start -->
-    <nav id="navbar">
-        <div class="nav-section">
-            <img id="logo" class="logo" src="img/logo-mobile.svg" alt="logo image">
-            <img id="burger" src="img/burger.svg" alt="menu image">
-            <ul id="nav-ul" class="nav-ul">
-                <li><a id="dark-theme-button" class="nav-item" href="#">Modo Nocturno</a></li>
-                    <div class="menu-line"></div>
-                <li><a href="#" class="nav-item">Favoritos</a></li>
-                    <div class="menu-line"></div>
-                <li><a href="#" class="nav-item">Mis GIFOS</a></li>
-                    <div class="menu-line"></div>
-            </ul>
-            <!-- create gif svg -->
-            <div id="create-gif-border" class="create-gif-border" style>
-                <?xml version="1.0" encoding="UTF-8"?>
-                    <svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                    
-                        <title>button-crear-gifo</title>
-                        <desc>Created with Sketch.</desc>
-                        <defs >
-                            <path d="M8,0 C8.55228475,0 9,0.44771525 9,1 L9,1 L9,7 L15,7 C15.5128358,7 15.9355072,7.38604019 15.9932723,7.88337887 L16,8 C16,8.55228475 15.5522847,9 15,9 L15,9 L9,9 L9,15 C9,15.5128358 8.61395981,15.9355072 8.11662113,15.9932723 L8,16 C7.44771525,16 7,15.5522847 7,15 L7,15 L7,9 L1,9 C0.487164161,9 0.0644928393,8.61395981 0.00672773133,8.11662113 L0,8 C0,7.44771525 0.44771525,7 1,7 L1,7 L7,7 L7,1 C7,0.487164161 7.38604019,0.0644928393 7.88337887,0.00672773133 Z" id="path-1"></path>
-                        </defs>
-                        <g id="GIFOS" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <g id="00-UI-Kit" transform="translate(-188.000000, -2784.000000)">
-                                <g id="button-crear-gifo" transform="translate(188.000000, 2784.000000)">
-                                    <mask id="mask-2" fill="white">
-                                        <use xlink:href="#path-1"></use>
-                                    </mask>
-                                    <use id="create-svg-fill" class="create-svg-fill" fill="#572EE5" fill-rule="nonzero" xlink:href="#path-1"></use>
-                                </g>
-                            </g>
-                        </g>
-                    </svg>
-            </div>
-        <!-- end create gif svg -->
+  <!-- nav start -->
+  <nav id="navbar">
+    <div class="nav-section">
+      <img id="logo" class="logo" src="img/logo-mobile.svg" alt="logo image" />
+      <div id="container-center" class="container-center">
+        <div id="search-nav" class="search-nav">
+          <input type="search" name="search" id="search" class="search" placeholder="Busca GIFOS y más" />
+          <a href="http://www.google.com.ar"><img id="icon-search" class="icon-search" src="img/icon-search.svg"
+              alt="icon search" /></a>
         </div>
-        <!-- <img src="img/button-crear-gifo.svg" alt="create gif" id="create-gif" class="create-gif"> -->
-    </nav>
-    <!-- nav end -->
-    <main>
-        <!-- starts landing -->
-        <div id="container-first" class="container">
-            <p>Inspírate, busca, guarda, y crea los mejores <span>GIFOS</span></p>
-        </div>
-        <div class="container">
-            <img id="friends-image" class="friends-image" src="img/ilustra_header.svg" alt="Friends image">
-        </div>
-        <!-- ends landing -->
-        <!-- starts search input with "trendings" -->
-        <div id="container-search" class="container-search">
-            <input type="search" name="search" id="search" class="search" placeholder="Busca GIFOS y más">
-            <a href="http://www.google.com.ar"><img id="icon-search" src="img/icon-search.svg" alt="icon search"></a>
-        </div>
-        <div class="container">
-            <p class="trending-title">Trending:</p>
-            <p class="trending-words">Reactions, Entertainment, Sports, Stickers, Artists</p>
-        </div>
-        <!-- end search input and "trendings" -->
-        <!-- little bar that only appears when search is active -->
-        <div class="little-bar"></div>
-        <!-- end of little bar -->
-        <!-- search results show -->
-        <div class="search-results-container">
-            <div id="search-results"></div>
-        </div>
-        <!-- end of search results -->
-        <!-- start trends carousel -->
-        <div id="container-trending" class="container-trending">
-            <p class="trends">Trending GIFOS</p>
-            <p class="trends-subtitle">Mira los últimos GIFOS de nuestra comunidad.</p>
+      </div>
+      <img id="burger" src="img/burger.svg" alt="menu image" />
+      <ul id="nav-ul" class="nav-ul">
+        <li>
+          <a id="dark-theme-button" class="nav-item" href="#">Modo Nocturno</a>
+        </li>
+        <div class="menu-line"></div>
+        <li><a href="#" class="nav-item">Favoritos</a></li>
+        <div class="menu-line"></div>
+        <li><a href="#" class="nav-item">Mis GIFOS</a></li>
+        <div class="menu-line"></div>
+      </ul>
 
-        <!-- here goes trending carousel in js -->
-            <div class="trends-carousel-container">
-                <div class="trends-carousel">
-                    <div class="image-container">
-                        <img class="image-carousel" src="https://via.placeholder.com/243x187.png?text=GIF+GOES+HERE" />
-                        <div class="after">
-                            <div>
-                                <div class="image-user">User</div>
-                                <div class="image-title">Titulo GIFO</div>
-                            </div>
-                            <div class="image-icons"></div>
-                        </div>
-                    </div>
-                    <div class="image-container">
-                        <img class="image-carousel" src="https://via.placeholder.com/243x187.png?text=GIF+GOES+HERE" />
-                        <div class="after">
-                            <div>
-                                <div class="image-user">User</div>
-                                <div class="image-title">Titulo GIFO</div>
-                            </div>
-                            <div class="image-icons"></div>
-                        </div>
-                    </div>
-                    <div class="image-container">
-                        <img class="image-carousel" src="https://via.placeholder.com/243x187.png?text=GIF+GOES+HERE" />
-                        <div class="after">
-                            <div>
-                                <div class="image-user">User</div>
-                                <div class="image-title">Titulo GIFO</div>
-                            </div>
-                            <div class="image-icons"></div>
-                        </div>
-                    </div>       
-                </div>
-            </div>
+      <!-- create gif svg -->
+      <div id="create-empty" class="container-empty">
+        <div id="create-gif-border" class="create-gif-border" style>
+          <?xml version="1.0" encoding="UTF-8"?>
+          <svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink">
+            <title>button-crear-gifo</title>
+            <desc>Created with Sketch.</desc>
+            <defs>
+              <path
+                d="M8,0 C8.55228475,0 9,0.44771525 9,1 L9,1 L9,7 L15,7 C15.5128358,7 15.9355072,7.38604019 15.9932723,7.88337887 L16,8 C16,8.55228475 15.5522847,9 15,9 L15,9 L9,9 L9,15 C9,15.5128358 8.61395981,15.9355072 8.11662113,15.9932723 L8,16 C7.44771525,16 7,15.5522847 7,15 L7,15 L7,9 L1,9 C0.487164161,9 0.0644928393,8.61395981 0.00672773133,8.11662113 L0,8 C0,7.44771525 0.44771525,7 1,7 L1,7 L7,7 L7,1 C7,0.487164161 7.38604019,0.0644928393 7.88337887,0.00672773133 Z"
+                id="path-1"></path>
+            </defs>
+            <g id="GIFOS" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <g id="00-UI-Kit" transform="translate(-188.000000, -2784.000000)">
+                <g id="button-crear-gifo" transform="translate(188.000000, 2784.000000)">
+                  <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                  </mask>
+                  <use id="create-svg-fill" class="create-svg-fill" fill="#572EE5" fill-rule="nonzero"
+                    xlink:href="#path-1"></use>
+                </g>
+              </g>
+            </g>
+          </svg>
         </div>
+      </div>
+      <!-- end create gif svg -->
+    </div>
+    <!-- <img src="img/button-crear-gifo.svg" alt="create gif" id="create-gif" class="create-gif"> -->
+  </nav>
+  <!-- nav end -->
+  <main>
+    <!-- starts landing -->
+    <div id="container-first" class="container">
+      <p>Inspírate, busca, guarda, y crea los mejores <span>GIFOS</span></p>
+    </div>
+    <div class="container">
+      <img id="friends-image" class="friends-image" src="img/ilustra_header.svg" alt="Friends image" />
+    </div>
+    <!-- ends landing -->
+    <!-- starts search input with "trendings" -->
+    <div id="container-search" class="container-search">
+      <div id="icon-onsearch" class="icon-onsearch">
+        <img src="img/icon-onsearch.svg" alt="" />
+      </div>
+      <input type="search" name="search" id="search-main" class="search" placeholder="Busca GIFOS y más" />
+      <a href="http://www.google.com.ar"><img id="icon-search" class="icon-search" src="img/icon-search.svg"
+          alt="icon search" /></a>
+      <ul id="suggestions-list"></ul>
+    </div>
 
-        
-        <!-- end trends carousel -->
-    </main>
-    <footer>
-            <div class="container-footer">
-                    <div class="container-social">
-                        <p class="container-footer-p">Compartir en:</p>
-                        <div class="social-items">
-                            <a class="social-item" href="http://www.facebook.com" target="_blank">
-                                <img src="/img/icon_facebook.svg" alt="facebook social">
-                            </a>
-                            <a class="social-item" href="http://www.twitter.com" target="_blank">
-                                <img src="/img/icon-twitter.svg" alt="">
-                            </a>
-                            <a class="social-item" href="http://www.instagram.com" target="_blank">
-                                <img src="/img/icon_instagram.svg" alt="">
-                            </a>
-                        </div> 
-                    </div>       
-                <div class="copyright">
-                    <p class="copyright-p">© GIFOS 2020 All Rights Reserved.</p>
-                </div>
-            </div>
-    </footer>
-    <!-- scripts -->
-    <script src="js/script.js"></script>
+    <div id="trending-five" class="container">
+      <p class="trending-title">Trending:</p>
+      <!-- Here goes 'p' of trending search terms -->
+    </div>
+    <!-- end search input and "trendings" -->
+    <!-- search results show -->
+    <div id="search-results" class="search-results">
+
+    </div>
+    <!-- end of search results -->
+
+    <!-- start trends carousel -->
+    <div id="container-trending" class="container-trending">
+      <p class="trends">Trending GIFOS</p>
+      <p class="trends-subtitle">
+        Mira los últimos GIFOS de nuestra comunidad.
+      </p>
+
+      <!-- here goes trending carousel in js -->
+
+      <div id="trends-carousel" class="trends-carousel">
+        <!-- Here goes 'divs', 'img', titles and buttons of trending gifos     -->
+      </div>
+    </div>
+    <!-- end trends carousel -->
+  </main>
+  <footer>
+    <div class="container-footer">
+      <div class="container-social">
+        <p class="container-footer-p">Compartir en:</p>
+        <div class="social-items">
+          <a class="social-item" href="http://www.facebook.com" target="_blank">
+            <img src="img/icon_facebook.svg" alt="facebook social" />
+          </a>
+          <a class="social-item" href="http://www.twitter.com" target="_blank">
+            <img src="img/icon-twitter.svg" alt="" />
+          </a>
+          <a class="social-item" href="http://www.instagram.com" target="_blank">
+            <img src="img/icon_instagram.svg" alt="" />
+          </a>
+        </div>
+      </div>
+      <div class="copyright">
+        <p class="copyright-p">© GIFOS 2020 All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <!-- scripts -->
+  <script type="module" src="js/config.js"></script>
+  <script src="js/script.js"></script>
+  <script type="module" src="js/trending.js"></script>
 </body>
+
 </html>
