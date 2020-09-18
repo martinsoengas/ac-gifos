@@ -135,6 +135,10 @@ body {
   position: relative;
 }
 
+.icon-onsearch {
+  display: none;
+}
+
 #suggestions-list {
   display: flex;
   flex-direction: column;
@@ -205,10 +209,24 @@ input {
   margin-bottom: 78px;
 }
 
+.search-title-container {
+  font-family: $textMonserrat;
+  font-weight: 700;
+  font-size: 25px;
+  color: $colorPrimary;
+  text-align: center;
+  line-height: 40px;
+  margin-bottom: 38px;
+}
+
 .img-gifs {
   margin: auto;
   width: 156px;
   height: 120px;
+}
+
+#view-more-container {
+  text-align: center;
 }
 
 .container .trending-words {
@@ -531,6 +549,15 @@ footer {
 
   .container .trending-words {
     margin-bottom: 95px;
+  }
+
+  .icon-onsearch {
+    display: block;
+    visibility: hidden;
+  }
+
+  .icon-onsearch-visible {
+    visibility: visible;
   }
 
   .search-results {
