@@ -3,12 +3,11 @@ import { config } from "./config.js";
 let OFFSET_COUNTER = 12;
 /* -----------------------------  MAIN SEARCH ----------------------------- */
 const inputMain = document.getElementById("search-main");
-const containerSearch = document.getElementById("container-search");
-const p = document.createElement("p");
 const suggestionsList = document.getElementById("suggestions-list");
 const iconOnSearch = document.getElementById("icon-onsearch");
 const searchResults = document.getElementById('search-results')
 const searchTitle = document.getElementById('search-title')
+const searchTitleContainer = document.getElementById('search-title-container')
 const viewMore = document.getElementById('view-more-container')
 
 async function searchExecute(searchTerm) {
@@ -24,10 +23,9 @@ async function searchExecute(searchTerm) {
       searchResults.innerHTML = "";
       iconOnSearch.classList.remove("icon-onsearch-visible");
 
-      const pSearchTitle = document.createElement('p')
-      pSearchTitle.textContent = capitalizeFirstLetter(searchTerm)
-      pSearchTitle.classList.add('p-search-title')
-      searchTitle.appendChild(pSearchTitle);
+      searchTitle.textContent = capitalizeFirstLetter(searchTerm)
+      searchTitleContainer.classList.add('search-title-container');
+      searchTitleContainer.classList.remove('display-none')
 
       viewMore.classList.remove('display-none')
 

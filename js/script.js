@@ -4,11 +4,12 @@ let burger = document.getElementById("burger");
 let isDarkMode = false;
 
 // function sticky navbar
-let navbar = document.getElementById("navbar");
+const navbar = document.getElementById("navbar");
 let sticky = navbar.offsetTop;
-let createGif = document.getElementById("create-gif-border");
-let createEmpty = document.getElementById("create-empty");
-let searchNav = document.getElementById("container-center");
+const createGif = document.getElementById("create-gif-border");
+const createEmpty = document.getElementById("create-empty");
+const searchNav = document.getElementById("container-center");
+const viewMore = document.getElementById('view-more');
 
 window.addEventListener("scroll", () => {
   if (window.pageYOffset >= sticky) {
@@ -135,6 +136,16 @@ function darkTheme() {
     createGif.setAttribute("fill", "#572EE5");
   }
 
+  const viewMoreAttribute = viewMore.getAttribute('src');
+
+  console.log(viewMoreAttribute)
+
+  if (viewMoreAttribute === "img/CTA-ver-mas.svg") {
+    viewMore.setAttribute('src', 'img/CTA-ver+modo-noc.svg')
+  } else if (viewMoreAttribute === "img/CTA-ver+modo-noc.svg") {
+    viewMore.setAttribute('src', 'img/CTA-ver-mas.svg')
+  }
+
   document
     .getElementById("create-gif-border")
     .classList.toggle("dark-create-gif-border");
@@ -145,3 +156,12 @@ if (navbar.classList.contains("sticky")) {
 } else {
   createGif.classList.remove("visibility-hidden");
 }
+
+
+viewMore.addEventListener('mouseover', () => {
+  if (viewMore.getAttribute('src') === "img/CTA-ver-mas.svg") {
+    viewMore.setAttribute('src', 'img/CTA-ver-mas-hover.svg')
+  } else if (viewMore.getAttribute('src') === "img/CTA-ver+modo-noc.svg") {
+    viewMore.setAttribute('src', 'img/CTA-ver+hover-modo-noc.svg')
+  }
+})
