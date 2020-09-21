@@ -71,6 +71,13 @@ body {
   display: none;
 }
 
+.create-gif {
+  width: 54px;
+  height: 54px;
+  background: url('/img/CTA-crear-gifo-active.svg');
+  
+}
+
 .create-gif-border {
   display: none;
 }
@@ -400,6 +407,7 @@ footer {
     flex-direction: row;
     justify-content: flex-end;
     background-color: transparent;
+    width: 90%;
   }
 
   .nav-ul li a {
