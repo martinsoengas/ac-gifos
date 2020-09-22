@@ -77,6 +77,10 @@ input {
   color: #ffffff;
 }
 
+.search-nav {
+  display: none;
+}
+
 .create-gif {
   width: 54px;
   height: 54px;
@@ -372,6 +376,36 @@ input {
   font-size: 19px;
 }
 
+.facebook-social {
+  width: 8px;
+  height: 17px;
+  background: url("/img/icon_facebook.svg");
+}
+
+.facebook-social:hover {
+  background: url("/img/icon_facebook_hover.svg");
+}
+
+.twitter-social {
+  width: 18px;
+  height: 17px;
+  background: url("/img/icon-tw-normal.svg");
+}
+
+.twitter-social:hover {
+  background: url("/img/icon-twitter-hover.svg");
+}
+
+.instagram-social {
+  width: 18px;
+  height: 18px;
+  background: url("/img/icon_instagram.svg");
+}
+
+.instagram-social:hover {
+  background: url("/img/icon_instagram-hover.svg");
+}
+
 .copyright-p {
   text-align: center;
   font-family: Roboto, sans-serif;
@@ -391,19 +425,19 @@ input {
 }
 
 .dark p {
-  color: white;
+  color: #ffffff;
 }
 
 .dark input {
-  color: white;
+  color: #ffffff;
 }
 
 .dark a {
-  color: white;
+  color: #ffffff;
 }
 
 .dark .search-nav {
-  border: 1px solid white;
+  border: 1px solid #ffffff;
 }
 
 .dark .create-gif {
@@ -418,8 +452,38 @@ input {
   background: url("/img/CTA-crear-gifo-active-modo-noc.svg");
 }
 
+.dark .facebook-social {
+  width: 8px;
+  height: 17px;
+  background: url("/img/icon_facebook_noc.svg");
+}
+
+.dark .facebook-social:hover {
+  background: url("/img/icon_facebook_hover.svg");
+}
+
+.dark .twitter-social {
+  width: 18px;
+  height: 17px;
+  background: url("/img/icon_twitter_noc.svg");
+}
+
+.dark .twitter-social:hover {
+  background: url("/img/icon-twitter-hover.svg");
+}
+
+.dark .instagram-social {
+  width: 18px;
+  height: 18px;
+  background: url("/img/icon_instagram_noc.svg");
+}
+
+.dark .instagram-social:hover {
+  background: url("/img/icon_instagram-hover.svg");
+}
+
 .dark-container-search {
-  border: 1px solid white;
+  border: 1px solid #ffffff;
 }
 
 .dark-container-trending {
@@ -658,9 +722,6 @@ input {
   .social-items a {
     color: #cdd6e0;
     font-size: 19px;
-  }
-  .social-item:hover {
-    fill: violet;
   }
   .copyright-p {
     font-size: 13px;

@@ -48,14 +48,17 @@ darkThemeButton.addEventListener("click", darkTheme);
 
 function darkTheme() {
   isDarkMode = !isDarkMode;
-  document.body.classList.toggle('dark');
+  document.body
+    .classList.toggle('dark');
   document
     .getElementById("container-search")
     .classList.toggle("dark-container-search");
   document
     .getElementById("container-trending")
     .classList.toggle("dark-container-trending");
-  document.getElementById("nav-ul").classList.toggle("dark-nav-ul");
+  document
+    .getElementById("nav-ul")
+    .classList.toggle("dark-nav-ul");
 
   if (darkThemeButton.textContent === "Modo Nocturno") {
     darkThemeButton.textContent = "Modo Diurno";
@@ -96,4 +99,5 @@ function darkTheme() {
   } else if ("img/button-close-dark.svg") {
     burger.setAttribute("src", "img/button-close.svg");
   }
+
 }
