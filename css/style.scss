@@ -20,6 +20,10 @@ body {
   color: $colorPrimary;
 }
 
+input {
+  all: unset;
+}
+
 .display-none {
   display: none !important;
 }
@@ -176,15 +180,8 @@ body {
   width: 15px;
 }
 
-input {
-  all: unset;
-}
-
 .search {
-  box-shadow: none;
   width: 90%;
-  background: transparent;
-  color: #6b7989;
   font-family: $textRoboto;
   font-weight: 400;
   font-size: 16px;
@@ -194,7 +191,7 @@ input {
 
 .container .trending-title {
   font-size: 16px;
-  margin: 0px;
+  margin: 0;
 }
 
 .search-results {
@@ -232,7 +229,7 @@ input {
   font-weight: 500;
   width: 75%;
   line-height: 25px;
-  margin-bottom: 45px;
+
 }
 
 .container-trending {
@@ -343,36 +340,7 @@ input {
   padding-bottom: 23px;
 }
 
-// footer {
-//   border-bottom: 5px solid $colorPrimary;
-// }
-
 // DARK MODE CLASSES
-
-.dark-body {
-  background-color: #37383c;
-  border-top: 5px solid #000000;
-}
-
-
-.dark-border-bottom {
-  border-bottom: 5px solid #000000;
-}
-
-.dark-container-search {
-  border: 1px solid white;
-}
-
-.dark-container-trending {
-  background-color: #222326;
-}
-
-.dark-nav-ul {
-  background-color: #000000;
-  opacity: 1;
-}
-
-// DARK CLASSES
 
 .dark{
   background-color: #37383c;
@@ -402,14 +370,24 @@ input {
   }
 }
 
+.dark-container-search {
+  border: 1px solid white;
+}
+
+.dark-container-trending {
+  background-color: #222326;
+}
+
+.dark-nav-ul {
+  background-color: #000000;
+  opacity: 1;
+}
+
 // DESKTOP VERSION
 
 @media screen and (min-width: $desktop-screen) {
   .logo {
     max-width: 64px;
-  }
-
-  nav {
   }
 
   .nav-section {
@@ -479,55 +457,6 @@ input {
     margin-left: 100px;
   }
 
-
-  // .create-gif-border {
-  //   display: inherit;
-  //   padding: 18px 18px 15px 18px;
-  //   border: 1px solid $colorPrimary;
-  //   border-radius: 50%;
-
-  //   &:hover {
-  //     background-color: $colorPrimary;
-  //   }
-
-  //   &:hover .create-svg-fill {
-  //     fill: #ffffff;
-  //   }
-
-  //   &:active {
-  //     background-color: #9cafc3;
-  //     border: 1px solid #9cafc3;
-  //   }
-
-  //   &:active .create-svg-fill {
-  //     fill: #ffffff;
-  //   }
-  // }
-
-
-
-
-  // .dark-create-gif-border {
-  //   border: 1px solid #ffffff;
-
-  //   &:hover {
-  //     background-color: #ffffff;
-  //   }
-
-  //   &:hover .create-svg-fill {
-  //     fill: #000000;
-  //   }
-
-  //   &:active {
-  //     background-color: #9cafc3;
-  //     border: 1px solid #9cafc3;
-  //   }
-
-  //   &:active .create-svg-fill {
-  //     fill: #ffffff;
-  //   }
-  // }
-
   .menu-line {
     display: none;
   }
@@ -545,10 +474,6 @@ input {
     font-size: 35px;
     line-height: 50px;
     margin-bottom: 31px;
-  }
-
-  .container .trending-words {
-    margin-bottom: 95px;
   }
 
   .icon-onsearch {
@@ -678,10 +603,6 @@ input {
   .copyright-p {
     font-size: 13px;
   }
-
-/*   footer {
-    border-bottom: 5px solid $colorPrimary;
-  } */
 
   .para {
     position: relative;

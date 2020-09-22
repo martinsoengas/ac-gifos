@@ -15,6 +15,10 @@ body {
   color: #572ee5;
 }
 
+input {
+  all: unset;
+}
+
 .display-none {
   display: none !important;
 }
@@ -207,16 +211,8 @@ body {
   width: 15px;
 }
 
-input {
-  all: unset;
-}
-
 .search {
-  -webkit-box-shadow: none;
-          box-shadow: none;
   width: 90%;
-  background: transparent;
-  color: #6b7989;
   font-family: Roboto, sans-serif;
   font-weight: 400;
   font-size: 16px;
@@ -226,7 +222,7 @@ input {
 
 .container .trending-title {
   font-size: 16px;
-  margin: 0px;
+  margin: 0;
 }
 
 .search-results {
@@ -266,7 +262,6 @@ input {
   font-weight: 500;
   width: 75%;
   line-height: 25px;
-  margin-bottom: 45px;
 }
 
 .container-trending {
@@ -388,28 +383,6 @@ input {
   padding-bottom: 23px;
 }
 
-.dark-body {
-  background-color: #37383c;
-  border-top: 5px solid #000000;
-}
-
-.dark-border-bottom {
-  border-bottom: 5px solid #000000;
-}
-
-.dark-container-search {
-  border: 1px solid white;
-}
-
-.dark-container-trending {
-  background-color: #222326;
-}
-
-.dark-nav-ul {
-  background-color: #000000;
-  opacity: 1;
-}
-
 .dark {
   background-color: #37383c;
   border-top: 5px solid #000000;
@@ -443,6 +416,19 @@ input {
 
 .dark .create-gif:active {
   background: url("/img/CTA-crear-gifo-active-modo-noc.svg");
+}
+
+.dark-container-search {
+  border: 1px solid white;
+}
+
+.dark-container-trending {
+  background-color: #222326;
+}
+
+.dark-nav-ul {
+  background-color: #000000;
+  opacity: 1;
 }
 
 @media screen and (min-width: 1200px) {
@@ -551,9 +537,6 @@ input {
     font-size: 35px;
     line-height: 50px;
     margin-bottom: 31px;
-  }
-  .container .trending-words {
-    margin-bottom: 95px;
   }
   .icon-onsearch {
     display: block;
@@ -682,9 +665,6 @@ input {
   .copyright-p {
     font-size: 13px;
   }
-  /*   footer {
-    border-bottom: 5px solid $colorPrimary;
-  } */
   .para {
     position: relative;
     top: 20px;
