@@ -40,7 +40,7 @@ window.addEventListener("scroll", () => {
 
 // burger light/dark show menu
 burger.addEventListener("click", () => {
-  navUL.classList.toggle("show");
+  navUL.classList.toggle("show-burger-menu");
   let burgerAttribute = burger.getAttribute("src");
   if (burgerAttribute === "img/burger.svg") {
     burger.setAttribute("src", "img/button-close.svg");
@@ -60,13 +60,9 @@ darkThemeButton.addEventListener("click", darkTheme);
 function darkTheme() {
   isDarkMode = !isDarkMode;
   document.body.classList.toggle('dark');
-
-
-
   document
     .getElementById("container-search")
     .classList.toggle("dark-container-search");
-  // document.getElementById("search-nav").classList.toggle("dark-search-nav");
   document
     .getElementById("container-trending")
     .classList.toggle("dark-container-trending");
@@ -149,8 +145,8 @@ function darkTheme() {
   //   .classList.toggle("dark-create-gif-border");
 }
 // dark theme end
-if (navbar.classList.contains("sticky")) {
-  createGif.classList.add("visibility-hidden");
-} else {
-  createGif.classList.remove("visibility-hidden");
-}
+// if (navbar.classList.contains("sticky")) {
+//   createGif.classList.add("visibility-hidden");
+// } else {
+//   createGif.classList.remove("visibility-hidden");
+// }
