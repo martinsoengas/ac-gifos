@@ -9,6 +9,8 @@ const searchResults = document.getElementById('search-results')
 const searchTitle = document.getElementById('search-title')
 const searchTitleContainer = document.getElementById('search-title-container')
 const viewMore = document.getElementById('view-more-container')
+const ul = document.getElementById("suggestions-list");
+const iconSearchMain = document.getElementById('icon-search-main')
 
 async function searchExecute(searchTerm) {
   if (searchTerm !== "") {
@@ -48,43 +50,72 @@ async function searchSuggestions(searchTerm) {
 
     suggestionsList.innerHTML = "";
 
-    const hrLine = document.createElement("hr");
-    hrLine.classList.add("hr-line");
-    suggestionsList.appendChild(hrLine);
-    iconOnSearch.classList.add("icon-onsearch-visible");
+    hrLineAndOnsearchCreation()
 
-    for (let i = 0; i <= 3; i++) {
-      const divIcon = document.createElement("div");
-      divIcon.classList.add("div-icon");
-      const liSuggestions = document.createElement("li");
-      liSuggestions.classList.add("li-suggestions");
-      liSuggestions.setAttribute('id', i);
-      const imgIcon = document.createElement("img");
-      imgIcon.classList.add("img-icon");
-      imgIcon.setAttribute("src", "img/icon-onsearch.svg");
+    iconSearchCrossCreation()
 
-      divIcon.appendChild(imgIcon);
-      divIcon.appendChild(liSuggestions);
-      suggestionsList.appendChild(divIcon);
-
-      liSuggestions.textContent = capitalizeFirstLetter(search.data[i].name);
-    }
+    searchSuggestionsCreation(search)
 
   } else {
-    suggestionsList.innerHTML = "";
-    searchResults.innerHTML = "";
-    iconOnSearch.classList.remove("icon-onsearch-visible");
-    searchTitle.innerHTML = "";
-    viewMore.classList.add('display-none')
-    OFFSET_COUNTER = 12;
+    searchSuggestionsDelete();
+  }
+}
+
+function hrLineAndOnsearchCreation() {
+  const hrLine = document.createElement("hr");
+  hrLine.classList.add("hr-line");
+  suggestionsList.appendChild(hrLine);
+  iconOnSearch.classList.add("icon-onsearch-visible");
+}
+
+function iconSearchCrossCreation() {
+  if (iconSearchMain.getAttribute('src') === "img/icon-search.svg") {
+    iconSearchMain.setAttribute("src", "img/close.svg");
+  } else if (iconSearchMain.getAttribute('src') === "img/icon-search-mod-noc.svg") {
+    iconSearchMain.setAttribute("src", "img/close-modo-noct.svg");
+  }
+  iconSearchMain.addEventListener('click', () => {
+    inputMain.value = ""
+    searchSuggestionsDelete();
+  })
+}
+
+function searchSuggestionsCreation(search) {
+  for (let i = 0; i <= 3; i++) {
+    const divIcon = document.createElement("div");
+    divIcon.classList.add("div-icon");
+    const liSuggestions = document.createElement("li");
+    liSuggestions.classList.add("li-suggestions");
+    liSuggestions.setAttribute('id', i);
+    const imgIcon = document.createElement("img");
+    imgIcon.classList.add("img-icon");
+    imgIcon.setAttribute("src", "img/icon-onsearch.svg");
+
+    divIcon.appendChild(imgIcon);
+    divIcon.appendChild(liSuggestions);
+    suggestionsList.appendChild(divIcon);
+
+    liSuggestions.textContent = capitalizeFirstLetter(search.data[i].name);
+  }
+};
+
+function searchSuggestionsDelete() {
+  suggestionsList.innerHTML = "";
+  searchResults.innerHTML = "";
+  iconOnSearch.classList.remove("icon-onsearch-visible");
+  searchTitle.innerHTML = "";
+  viewMore.classList.add('display-none')
+  OFFSET_COUNTER = 12;
+  if (iconSearchMain.getAttribute('src') === "img/close.svg") {
+    iconSearchMain.setAttribute("src", "img/icon-search.svg");
+  } else if (iconSearchMain.getAttribute('src') === "img/close-modo-noct.svg") {
+    iconSearchMain.setAttribute("src", "img/icon-search-mod-noc.svg");
   }
 }
 
 viewMore.addEventListener('click', () => {
   searchExecute(inputMain.value);
 });
-
-let ul = document.getElementById("suggestions-list");
 
 ul.addEventListener('click', (e) => {
   if (e.target.tagName === 'LI' || e.target.tagName === 'DIV') {

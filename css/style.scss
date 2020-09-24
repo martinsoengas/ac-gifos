@@ -1,5 +1,6 @@
 $colorPrimary: #572ee5;
-$colorDark: #ffffff;
+$colorSecondary: #ffffff;
+$colorBlack: #000000;
 $textRoboto: Roboto, sans-serif;
 $textMonserrat: Montserrat, sans-serif;
 $desktop-screen: 1200px;
@@ -53,21 +54,19 @@ input {
   align-items: center;
   padding: 0;
   list-style-type: none;
-  width: 100%;
   display: none;
   z-index: 1;
-}
-
-.nav-ul li a {
-  display: inline-block;
-  padding: 10px 20px;
-  text-decoration: none;
-  margin-top: 15px;
-  font-size: 15px;
+  & li a {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    margin-top: 15px;
+    font-size: 15px;
+  }
 }
 
 .nav-item {
-  color: $colorDark;
+  color: $colorSecondary;
 }
 
  .search-nav {
@@ -88,7 +87,7 @@ input {
 
 .menu-line {
   opacity: 0.5;
-  border-top: 1px solid $colorDark;
+  border-top: 1px solid $colorSecondary;
   width: 10%;
 }
 
@@ -100,25 +99,24 @@ input {
   padding-top: 15px;
   opacity: 0.9;
   display: flex;
+  width: 100%;
   height: 100%;
 }
 
 .container {
   margin: 0 auto;
   width: 70%;
-  margin-bottom: -4px;
+  margin-bottom: -5px;
   text-align: center;
-}
-
-.container p {
-  text-align: center;
-  font-size: 25px;
-  line-height: 33px;
-  margin-bottom: 31px;
-}
-
-.container span {
-  color: #5ed7c6;
+  & p {
+    text-align: center;
+    font-size: 25px;
+    line-height: 33px;
+    margin-bottom: 31px;
+  }
+  & span {
+    color: #5ed7c6;
+  }
 }
 
 #friends-image {
@@ -135,7 +133,7 @@ input {
   margin-bottom: 31px;
   max-width: 551px;
   width: 90%;
-  border: 1px solid #572ee5;
+  border: 1px solid $colorPrimary;
   border-radius: 27px;
   padding: 15px 20px 13px 25px;
   position: relative;
@@ -196,8 +194,11 @@ input {
 
 .container .trending-title {
   font-size: 16px;
-  margin: 0;
-}
+  color: #572EE5;
+  text-align: center;
+  line-height: 25px;
+  margin-bottom: 0;
+  }
 
 .search-results {
   margin: 0 auto;
@@ -205,7 +206,6 @@ input {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(156px, 2fr));
   grid-gap: 21px;
-  margin-bottom: 78px;
 }
 
 .search-title-container {
@@ -215,7 +215,6 @@ input {
   color: $colorPrimary;
   text-align: center;
   line-height: 40px;
-  margin-bottom: 38px;
 }
 
 .img-gifs {
@@ -234,7 +233,7 @@ input {
   font-weight: 500;
   width: 75%;
   line-height: 25px;
-
+  margin-bottom: 45px;
 }
 
 .container-trending {
@@ -245,19 +244,18 @@ input {
   font-size: 20px;
   text-align: center;
   padding-top: 46px;
-}
-
-.trends-subtitle {
-  margin: 0 auto;
-  width: 50%;
-  font-family: $textRoboto;
-  font-size: 16px;
-  color: #000000;
-  text-align: center;
-  line-height: 23px;
-  font-weight: 400;
-  padding-top: 7px;
-  padding-bottom: 32px;
+  &-subtitle {
+    margin: 0 auto;
+    width: 50%;
+    font-family: $textRoboto;
+    font-size: 16px;
+    color: #000000;
+    text-align: center;
+    line-height: 23px;
+    font-weight: 400;
+    padding-top: 7px;
+    padding-bottom: 32px;
+  }
 }
 
 // TRENDS CAROUSEL
@@ -277,15 +275,14 @@ input {
   height: 200px;
   margin-left: 22px;
   margin-bottom: 82px;
-}
-
-.image-container .after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: none;
+  & .after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+  }
 }
 
 .image-carousel {
@@ -297,14 +294,14 @@ input {
   font-style: $textRoboto;
   font-weight: 400;
   font-size: 15px;
-  color: $colorDark;
+  color: $colorSecondary;
 }
 
 .image-title {
   font-style: $textRoboto;
   font-weight: 700;
   font-size: 16px;
-  color: $colorDark;
+  color: $colorSecondary;
 }
 
 // FOOTER CLASSES
@@ -327,11 +324,10 @@ input {
   margin: 0 auto;
   width: 25%;
   margin-bottom: 48px;
-}
-
-.social-items a i {
-  color: #cdd6e0;
-  font-size: 19px;
+  & a i {
+    color: #cdd6e0;
+    font-size: 19px;
+  }
 }
 
 .facebook-social {
@@ -372,24 +368,23 @@ input {
   padding-bottom: 23px;
 }
 
-// DARK MODE CLASSES
+// DARK THEME
 
 .dark{
   background-color: #37383c;
   border-top: 5px solid #000000;
   border-bottom: 5px solid #000000;
-  margin: 0;
   p{
-    color: $colorDark;
+    color: $colorSecondary !important;
   }
   input{
-    color: $colorDark;
+    color: $colorSecondary;
   }
   a{
-    color:$colorDark;
+    color:$colorSecondary;
   }
   .search-nav{
-    border: 1px solid $colorDark;
+    border: 1px solid $colorSecondary;
   }
   .create-gif{
     background: url('/img/CTA-crear-gifo-modo-noc.svg');
@@ -400,45 +395,45 @@ input {
       background: url('/img/CTA-crear-gifo-active-modo-noc.svg');
     }
   }
+
   .facebook-social {
-  width: 8px;
-  height: 17px;
-  background: url('/img/icon_facebook_noc.svg');
-  &:hover{
-    background: url('/img/icon_facebook_hover.svg');
+    width: 8px;
+    height: 17px;
+    background: url('/img/icon_facebook.svg');
+    &:hover{
+      background: url('/img/icon_facebook_noc.svg');
+    }
   }
-}
 
-.twitter-social {
-  width: 18px;
-  height: 17px;
-  background: url('/img/icon_twitter_noc.svg');
-  &:hover{
-    background: url('/img/icon-twitter-hover.svg');
+  .twitter-social {
+    width: 18px;
+    height: 17px;
+    background: url('/img/icon-tw-normal.svg');
+    &:hover{
+      background: url('/img/icon_twitter_noc.svg');
+    }
   }
-}
 
-.instagram-social {
-  width: 18px;
-  height: 18px;
-  background: url('/img/icon_instagram_noc.svg');
-  &:hover{
-    background: url('/img/icon_instagram-hover.svg');
+  .instagram-social {
+    width: 18px;
+    height: 18px;
+    background: url('/img/icon_instagram.svg');
+    &:hover{
+      background: url('/img/icon_instagram_noc.svg');
+    }
   }
-}
-}
 
-.dark-container-search {
-  border: 1px solid $colorDark;
-}
+  &-container-search {
+    border: 1px solid $colorSecondary;
+  }
 
-.dark-container-trending {
-  background-color: #222326;
-}
-
-.dark-nav-ul {
-  background-color: #000000;
-  opacity: 1;
+  &-container-trending {
+    background-color: #222326;
+  }
+  &-nav-ul {
+    background-color: #000000;
+    opacity: 1;
+  }
 }
 
 // DESKTOP VERSION
@@ -452,7 +447,7 @@ input {
     flex-wrap: nowrap;
     width: 80%;
     margin: 0 auto;
-    padding-top: 20px;
+    padding: 0;
   }
 
   .nav-ul {
@@ -460,13 +455,11 @@ input {
     flex-direction: row;
     justify-content: flex-end;
     background-color: transparent;
-    width: 90%;
-  }
-
-  .nav-ul li a {
-    margin-top: 0;
-    padding: 10px 20px;
-    font-size: 13px;
+    & li a {
+      margin-top: 0;
+      padding: 10px 20px;
+      font-size: 13px;
+    }
   }
 
   .sticky {
@@ -475,14 +468,11 @@ input {
     background: rgba(255, 255, 255, 0.5);
     box-shadow: 0 2px 4px 1px rgba(156, 175, 195, 0.55);
     border-top: 5px solid $colorPrimary;
-  }
-
-  .sticky-dark {
-    position: sticky;
-    top: 0;
-    background: #37383c;
-    box-shadow: 0 2px 4px 1px rgba(156, 175, 195, 0.55);
-    border-top: 5px solid #000000;
+    &-dark{
+      @extend .sticky;
+      background: #37383c;
+      border-top: 5px solid #000000;
+    }
   }
 
   .nav-item {
@@ -507,12 +497,11 @@ input {
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
-    width: 40%;
+    width: 30%;
     background: transparent;
-    border: 1px solid #572ee5;
+    border: 1px solid $colorPrimary;
     border-radius: 27px;
     padding: 15px 20px 13px 55px;
-    margin-left: 100px;
   }
 
   .menu-line {
@@ -532,6 +521,7 @@ input {
     font-size: 35px;
     line-height: 50px;
     margin-bottom: 31px;
+    margin-top: 95px;
   }
 
   .icon-onsearch {
@@ -547,12 +537,28 @@ input {
     width: 80%;
     grid-template-columns: repeat(auto-fit, minmax(260px, 2fr));
     grid-gap: 29px;
-    margin-bottom: 70px;
   }
 
   .img-gifs {
     width: 260px;
     height: 200px;
+  }
+
+  .container .trending-title {
+    font-size: 18px;
+    color: #572EE5;
+    text-align: center;
+    line-height: 25px;
+    margin-top: 73px;
+  }
+
+  .container .trending-words {
+    font-size: 16px;
+    color: $colorPrimary;
+    text-align: center;
+    line-height: 25px;
+    width: 75%;
+    margin-bottom: 95px;
   }
 
   // TRENDS CAROUSEL DESKTOP
@@ -591,7 +597,7 @@ input {
     font-family: $textRoboto;
     font-weight: 400;
     font-size: 15px;
-    color: $colorDark;
+    color: $colorSecondary;
     line-height: 0;
   }
 
@@ -603,13 +609,13 @@ input {
     font-family: $textRoboto;
     font-weight: 700;
     font-size: 16px;
-    color: $colorDark;
+    color: $colorSecondary;
   }
 
   .image-container:hover .after {
     display: block;
     opacity: 0.6;
-    background: #572ee5;
+    background: $colorPrimary;
   }
 
   // footer desktop

@@ -12,13 +12,13 @@
 </head>
 
 <body>
-  <!-- nav start -->
   <nav id="navbar">
     <div class="nav-section">
       <img id="logo" class="logo" src="img/logo-mobile.svg" alt="logo image" />
 
       <div id="search-nav" class="search-nav display-none">
-        <input type="search" name="search" id="search" class="search" placeholder="Busca GIFOS y más" />
+        <input type="search" name="search" id="search" class="search" placeholder="Busca GIFOS y más"
+          autocomplete="off" />
         <a href="http://www.google.com.ar"><img id="icon-search" class="icon-search" src="img/icon-search.svg"
             alt="icon search" /></a>
       </div>
@@ -41,29 +41,23 @@
         </li>
       </ul>
     </div>
-
   </nav>
-  <!-- nav end -->
   <main>
-    <!-- starts landing -->
     <div id="container-first" class="container">
       <p>Inspírate, busca, guarda, y crea los mejores <span>GIFOS</span></p>
     </div>
     <div class="container">
       <img id="friends-image" class="friends-image" src="img/ilustra_header.svg" alt="Friends image" />
     </div>
-    <!-- ends landing -->
-    <!-- starts search input with "trendings" -->
     <div id="container-search" class="container-search">
       <div id="icon-onsearch" class="icon-onsearch">
         <img src="img/icon-onsearch.svg" alt="" />
       </div>
-      <input type="search" name="search" id="search-main" class="search" placeholder="Busca GIFOS y más" />
-      <a href="http://www.google.com.ar"><img id="icon-search" class="icon-search" src="img/icon-search.svg"
-          alt="icon search" /></a>
+      <input type="search" name="search" id="search-main" class="search" placeholder="Busca GIFOS y más"
+        autocomplete="off" />
+      <img id="icon-search-main" class="icon-search" src="img/icon-search.svg" alt="icon search" />
       <ul id="suggestions-list"></ul>
     </div>
-
     <div id="trending-five" class="container">
       <p class="trending-title">Trending:</p>
       <!-- Here goes 'p' of trending search terms -->
@@ -115,8 +109,9 @@
   </footer>
   <!-- scripts -->
   <script type="module" src="js/config.js"></script>
-  <script src="js/script.js"></script>
+  <script type="module" src="js/script.js"></script>
   <script type="module" src="js/trending.js"></script>
+
 </body>
 
 </html>
