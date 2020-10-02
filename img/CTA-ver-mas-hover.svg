@@ -7,7 +7,7 @@
         <g id="00-UI-Kit" transform="translate(-313.000000, -3032.000000)">
             <g id="CTA-ver-mas-hover" transform="translate(313.000000, 3032.000000)">
                 <rect id="Rectangle-3" fill="#572EE5" x="0" y="0" width="127" height="50" rx="25"></rect>
-                <text id="ver-todos" font-family="Montserrat-Bold, Montserrat" font-size="13" font-weight="bold" fill="#FFFFFF">
+                <text id="ver-todos" font-family="Montserrat, sans-serif" font-size="13" font-weight="bold" fill="#FFFFFF">
                     <tspan x="32.339" y="31">VER MÁS</tspan>
                 </text>
             </g>

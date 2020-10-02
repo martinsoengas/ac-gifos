@@ -144,7 +144,7 @@ input {
   list-style-type: none;
 }
 
-.hr-line {
+.hr-line-suggestions {
   margin-top: 10px;
   opacity: 0.5;
   border: 1px solid #9cafc3;
@@ -156,10 +156,10 @@ input {
   width: 100%;
   padding: 10px 0px 10px 2px;
   cursor: pointer;
-  &:hover {
+/*   &:hover {
     opacity: 0.6;
     background: $colorPrimary;
-  }
+  } */
 }
 
 .li-suggestions {
@@ -190,7 +190,8 @@ input {
   text-align: center;
   line-height: 25px;
   margin-bottom: 0;
-  }
+}
+
 
 .search-results {
   margin: 0 auto;
@@ -200,6 +201,19 @@ input {
   grid-gap: 21px;
 }
 
+.no-search-results {
+  text-align: center;
+}
+
+.hr-line-search {
+  margin: auto;
+  width: 60%;
+  margin-top: 10px;
+  margin-bottom: 43px;
+  opacity: 0.5;
+  border: 1px solid #9cafc3;
+}
+
 .search-title-container {
   font-family: $textMonserrat;
   font-weight: 700;
@@ -207,6 +221,7 @@ input {
   color: $colorPrimary;
   text-align: center;
   line-height: 40px;
+  margin-bottom: 38px;
 }
 
 .img-gifs {
@@ -215,8 +230,17 @@ input {
   height: 120px;
 }
 
-#view-more-container {
-  text-align: center;
+.view-more {
+  margin: auto;
+  width: 127px;
+  height: 50px;
+  margin-top: 78px;
+  margin-bottom: 79px;
+
+  background: url('/img/CTA-ver-mas.svg');
+  &:hover{
+    background: url('/img/CTA-ver-mas-hover.svg');
+  }
 }
 
 .container .trending-words {
@@ -397,6 +421,13 @@ input {
     }
     &:active{
       background: url('/img/CTA-crear-gifo-active-modo-noc.svg');
+    }
+  }
+
+  .view-more {
+    background: url('/img/CTA-ver+modo-noc.svg');
+    &:hover{
+      background: url('/img/CTA-ver+hover-modo-noc.svg');
     }
   }
 

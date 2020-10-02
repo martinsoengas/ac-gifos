@@ -7,7 +7,7 @@
         <g id="16-UI-Kit-Modo-Nocturno" transform="translate(-323.000000, -3028.000000)">
             <g id="CTA-ver+hover-modo-noc" transform="translate(323.000000, 3028.000000)">
                 <rect id="Rectangle-3" fill="#FFFFFF" x="0" y="0" width="127" height="50" rx="25"></rect>
-                <text id="ver-todos" font-family="Montserrat-Bold, Montserrat" font-size="13" font-weight="bold" fill="#000000">
+                <text id="ver-todos" font-family="Montserrat, sans-serif" font-size="13" font-weight="bold" fill="#000000">
                     <tspan x="32.339" y="31">VER MÁS</tspan>
                 </text>
             </g>
