@@ -8,6 +8,7 @@ const navbar = document.getElementById("navbar");
 let sticky = navbar.offsetTop;
 const searchNav = document.getElementById("search-nav");
 const viewMore = document.getElementById('view-more');
+const createGif = document.getElementById('create-gif')
 
 window.addEventListener("scroll", () => {
   if (window.pageYOffset >= sticky) {
@@ -15,15 +16,18 @@ window.addEventListener("scroll", () => {
       navbar.classList.add("sticky-dark");
       navbar.classList.remove("sticky");
       searchNav.classList.remove("display-none");
+      createGif.classList.add('visibility-hidden');
     } else {
       navbar.classList.add("sticky");
       navbar.classList.remove("sticky-dark");
       searchNav.classList.remove("display-none");
+      createGif.classList.add('visibility-hidden');
     }
   } else {
     navbar.classList.remove("sticky-dark");
     navbar.classList.remove("sticky");
     searchNav.classList.add("display-none");
+    createGif.classList.remove('visibility-hidden');
   }
 });
 

@@ -8,7 +8,14 @@ const iconOnSearch = document.getElementById("icon-onsearch");
 const searchResults = document.getElementById('search-results')
 const searchTitle = document.getElementById('search-title')
 const searchTitleContainer = document.getElementById('search-title-container')
-const viewMore = document.getElementById('view-more-container')
+const viewMoreContainer = document.getElementById('view-more-container')
+const ul = document.getElementById("suggestions-list");
+const iconSearchMain = document.getElementById('icon-search-main')
+const hrLineSearch = document.getElementById('hr-line-search')
+const hrLine = document.createElement("hr");
+const viewMore = document.createElement('div');
+const noSearchResults = document.getElementById('no-search-results')
+const noSearchImg = document.createElement('img');
 
 async function searchExecute(searchTerm) {
   if (searchTerm !== "") {
@@ -16,18 +23,32 @@ async function searchExecute(searchTerm) {
     const response = await fetch(urlSearch);
     const search = await response.json();
 
-    if (search !== "") {
+    if (search.data.length === 0) {
+
+      searchSuggestionsDelete()
+      hrLineSearchCreation()
+      searchTitle.textContent = "Lorem Ipsum";
+      searchTitleContainer.classList.add('search-title-container');
+      searchTitleContainer.classList.remove('display-none')
+
+      noSearchImg.setAttribute('src', 'img/icon-busqueda-sin-resultado.svg');
+      noSearchResults.appendChild(noSearchImg);
+
+    } else if (search !== "") {
       OFFSET_COUNTER = OFFSET_COUNTER + 12;
 
       searchTitle.innerHTML = "";
       searchResults.innerHTML = "";
       iconOnSearch.classList.remove("icon-onsearch-visible");
 
+      hrLineSearchCreation()
+
       searchTitle.textContent = capitalizeFirstLetter(searchTerm)
       searchTitleContainer.classList.add('search-title-container');
       searchTitleContainer.classList.remove('display-none')
 
-      viewMore.classList.remove('display-none')
+      viewMoreCreation()
+      viewMoreContainer.classList.remove('display-none')
 
       search.data.forEach(e => {
         let gifImgs = e.images.original.url;
@@ -48,47 +69,92 @@ async function searchSuggestions(searchTerm) {
 
     suggestionsList.innerHTML = "";
 
-    const hrLine = document.createElement("hr");
-    hrLine.classList.add("hr-line");
-    suggestionsList.appendChild(hrLine);
-    iconOnSearch.classList.add("icon-onsearch-visible");
+    hrLineSuggestionsCreation()
 
-    for (let i = 0; i <= 3; i++) {
-      const divIcon = document.createElement("div");
-      divIcon.classList.add("div-icon");
-      const liSuggestions = document.createElement("li");
-      liSuggestions.classList.add("li-suggestions");
-      liSuggestions.setAttribute('id', i);
-      const imgIcon = document.createElement("img");
-      imgIcon.classList.add("img-icon");
-      imgIcon.setAttribute("src", "img/icon-onsearch.svg");
+    iconSearchCrossCreation()
 
-      divIcon.appendChild(imgIcon);
-      divIcon.appendChild(liSuggestions);
-      suggestionsList.appendChild(divIcon);
-
-      liSuggestions.textContent = capitalizeFirstLetter(search.data[i].name);
-    }
+    searchSuggestionsCreation(search)
 
   } else {
-    suggestionsList.innerHTML = "";
-    searchResults.innerHTML = "";
-    iconOnSearch.classList.remove("icon-onsearch-visible");
-    searchTitle.innerHTML = "";
-    viewMore.classList.add('display-none')
-    OFFSET_COUNTER = 12;
+    searchSuggestionsDelete();
   }
 }
 
-viewMore.addEventListener('click', () => {
+function hrLineSearchCreation() {
+  hrLine.classList.add("hr-line-search");
+  hrLineSearch.appendChild(hrLine);
+}
+
+function hrLineSuggestionsCreation() {
+  const hrLine = document.createElement("hr");
+  hrLine.classList.add("hr-line-suggestions");
+  suggestionsList.appendChild(hrLine);
+  iconOnSearch.classList.add("icon-onsearch-visible");
+}
+
+function viewMoreCreation() {
+  viewMore.classList.add('view-more')
+  viewMoreContainer.appendChild(viewMore);
+}
+
+function iconSearchCrossCreation() {
+  if (iconSearchMain.getAttribute('src') === "img/icon-search.svg") {
+    iconSearchMain.setAttribute("src", "img/close.svg");
+  } else if (iconSearchMain.getAttribute('src') === "img/icon-search-mod-noc.svg") {
+    iconSearchMain.setAttribute("src", "img/close-modo-noct.svg");
+  }
+  iconSearchMain.addEventListener('click', () => {
+    inputMain.value = ""
+    searchSuggestionsDelete();
+  })
+}
+
+function searchSuggestionsCreation(search) {
+  for (let i = 0; i <= 3; i++) {
+    const divIcon = document.createElement("div");
+    divIcon.classList.add("div-icon");
+    const liSuggestions = document.createElement("li");
+    liSuggestions.classList.add("li-suggestions");
+    liSuggestions.setAttribute('id', i);
+    const imgIcon = document.createElement("img");
+    imgIcon.classList.add("img-icon");
+    imgIcon.setAttribute("src", "img/icon-onsearch.svg");
+
+    divIcon.appendChild(imgIcon);
+    divIcon.appendChild(liSuggestions);
+    suggestionsList.appendChild(divIcon);
+
+    liSuggestions.textContent = capitalizeFirstLetter(search.data[i].name);
+  }
+};
+
+function searchSuggestionsDelete() {
+  OFFSET_COUNTER = 12;
+  noSearchResults.innerHTML = "";
+  viewMoreContainer.innerHTML = "";
+  hrLineSearch.innerHTML = "";
+  viewMore.classList.remove('view-more');
+  hrLine.classList.remove("hr-line-search");
+  suggestionsList.innerHTML = "";
+  searchResults.innerHTML = "";
+  iconOnSearch.classList.remove("icon-onsearch-visible");
+  searchTitle.innerHTML = "";
+  viewMoreContainer.classList.add('display-none')
+  if (iconSearchMain.getAttribute('src') === "img/close.svg") {
+    iconSearchMain.setAttribute("src", "img/icon-search.svg");
+  } else if (iconSearchMain.getAttribute('src') === "img/close-modo-noct.svg") {
+    iconSearchMain.setAttribute("src", "img/icon-search-mod-noc.svg");
+  }
+}
+
+viewMoreContainer.addEventListener('click', () => {
   searchExecute(inputMain.value);
 });
-
-let ul = document.getElementById("suggestions-list");
 
 ul.addEventListener('click', (e) => {
   if (e.target.tagName === 'LI' || e.target.tagName === 'DIV') {
     inputMain.value = e.target.textContent;
+    OFFSET_COUNTER = 12;
     searchExecute(inputMain.value);
     setTimeout(() => {
       suggestionsList.innerHTML = "";
