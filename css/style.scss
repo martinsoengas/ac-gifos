@@ -713,12 +713,12 @@ input {
     display: inline-block;
     width: 32px;
     height: 32px;
-    background: url('/img/icon-fav.svg');
+    background: url('../img/icon-fav.svg');
     &:hover{
-      background: url('/img/icon-fav-hover.svg');
+      background: url('../img/icon-fav-hover.svg');
     }
     &:active{
-      background: url('/img/icon-fav-active.svg');
+      background: url('../img/icon-fav-active.svg');
     }
   }
 
@@ -727,9 +727,9 @@ input {
     display: inline-block;
     width: 32px;
     height: 32px;
-    background: url('/img/icon-download.svg');
+    background: url('../img/icon-download.svg');
     &:hover{
-      background: url('/img/icon-download-hover.svg');
+      background: url('../img/icon-download-hover.svg');
     }
   }
 
@@ -738,9 +738,9 @@ input {
     display: inline-block;
     width: 32px;
     height: 32px;
-    background: url('/img/icon-max-normal.svg');
+    background: url('../img/icon-max-normal.svg');
     &:hover{
-      background: url('/img/icon-max-hover.svg');
+      background: url('../img/icon-max-hover.svg');
     }
   }
   
