@@ -216,7 +216,7 @@ async function getTrendingGifs() {
   let urlTrendingGifs = `${config.baseUrl}/gifs/trending?api_key=${config.API_KEY}&limit=12`;
   const response = await fetch(urlTrendingGifs);
   const trending = await response.json();
-
+  console.log(trending);
 
   trending.data.forEach((gif) => {
     let imageContainer = document.createElement("div");
@@ -229,8 +229,6 @@ async function getTrendingGifs() {
     let after = document.createElement("div");
     after.classList.add("after");
 
-    let gifInfo = document.createElement("div");
-
     let userName = document.createElement("div");
     userName.classList.add("image-user");
     userName.textContent = gif.username ? gif.username : "User Not Registered";
@@ -239,12 +237,28 @@ async function getTrendingGifs() {
     imageTitle.classList.add("image-title");
     imageTitle.textContent = gif.title;
 
+    let imageIconContainer = document.createElement('div');
+    imageIconContainer.classList.add('image-icon-container');
+
+    let imageFav = document.createElement("div");
+    imageFav.classList.add("image-fav");
+
+    let imageDownload = document.createElement("div");
+    imageDownload.classList.add("image-download");
+
+    let imageMax = document.createElement("div");
+    imageMax.classList.add("image-max");
+
+    imageIconContainer.appendChild(imageFav)
+    imageIconContainer.appendChild(imageDownload)
+    imageIconContainer.appendChild(imageMax)
     imageContainer.appendChild(gifImg);
     imageContainer.appendChild(after);
 
-    after.appendChild(gifInfo);
-    gifInfo.appendChild(userName);
-    gifInfo.appendChild(imageTitle);
+
+    after.appendChild(userName);
+    after.appendChild(imageTitle);
+    after.appendChild(imageIconContainer);
 
     trendsCarousel.appendChild(imageContainer);
   });
