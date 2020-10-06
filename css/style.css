@@ -774,33 +774,33 @@ input {
     display: inline-block;
     width: 32px;
     height: 32px;
-    background: url("/img/icon-fav.svg");
+    background: url("../img/icon-fav.svg");
   }
   .image-fav:hover {
-    background: url("/img/icon-fav-hover.svg");
+    background: url("../img/icon-fav-hover.svg");
   }
   .image-fav:active {
-    background: url("/img/icon-fav-active.svg");
+    background: url("../img/icon-fav-active.svg");
   }
   .image-download {
     position: relative;
     display: inline-block;
     width: 32px;
     height: 32px;
-    background: url("/img/icon-download.svg");
+    background: url("../img/icon-download.svg");
   }
   .image-download:hover {
-    background: url("/img/icon-download-hover.svg");
+    background: url("../img/icon-download-hover.svg");
   }
   .image-max {
     position: relative;
     display: inline-block;
     width: 32px;
     height: 32px;
-    background: url("/img/icon-max-normal.svg");
+    background: url("../img/icon-max-normal.svg");
   }
   .image-max:hover {
-    background: url("/img/icon-max-hover.svg");
+    background: url("../img/icon-max-hover.svg");
   }
   .image-container:hover .after {
     display: block;
