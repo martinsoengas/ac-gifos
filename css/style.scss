@@ -676,7 +676,7 @@ input {
   }
 
   .image-user {
-    position: relative;
+    position: absolute;
     left: 18px;
     top: 181px;
     font-family: $textRoboto;
@@ -687,7 +687,7 @@ input {
   }
 
   .image-title {
-    position: relative;
+    position: absolute;
     width: 200px;
     left: 18px;
     top: 205px;
@@ -696,6 +696,54 @@ input {
     font-size: 16px;
     color: $colorSecondary;
   }
+
+  .image-icon-container {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    left: 237px;
+    width: 30%;
+    height: 32px;
+    top: 10px;
+  }
+
+  .image-fav {
+    position: relative;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url('/img/icon-fav.svg');
+    &:hover{
+      background: url('/img/icon-fav-hover.svg');
+    }
+    &:active{
+      background: url('/img/icon-fav-active.svg');
+    }
+  }
+
+  .image-download {
+    position: relative;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url('/img/icon-download.svg');
+    &:hover{
+      background: url('/img/icon-download-hover.svg');
+    }
+  }
+
+  .image-max {
+    position: relative;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url('/img/icon-max-normal.svg');
+    &:hover{
+      background: url('/img/icon-max-hover.svg');
+    }
+  }
+  
 
   .image-container:hover .after {
     display: block;
