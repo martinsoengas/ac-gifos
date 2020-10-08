@@ -135,11 +135,11 @@ input {
   display: none;
 }
 
-#suggestions-list {
+.suggestions-list {
   position: absolute;
   display: flex;
   flex-direction: column;
-  top: 26px;
+  top: 35px;
   left: -1px;
   width: 100.4%;
      background-color: white;

@@ -3,19 +3,19 @@ import { config } from "./config.js";
 let OFFSET_COUNTER = 12;
 /* -----------------------------  MAIN SEARCH ----------------------------- */
 const inputMain = document.getElementById("search-main");
-const suggestionsList = document.getElementById("suggestions-list");
+const suggestionsListUl = document.createElement("ul");
 const iconOnSearch = document.getElementById("icon-onsearch");
 const searchResults = document.getElementById('search-results')
 const searchTitle = document.getElementById('search-title')
 const searchTitleContainer = document.getElementById('search-title-container')
 const viewMoreContainer = document.getElementById('view-more-container')
-const ul = document.getElementById("suggestions-list");
 const iconSearchMain = document.getElementById('icon-search-main')
 const hrLineSearch = document.getElementById('hr-line-search')
 const hrLine = document.createElement("hr");
 const viewMore = document.createElement('div');
 const noSearchResults = document.getElementById('no-search-results')
 const noSearchImg = document.createElement('img');
+const containerSearch = document.getElementById('container-search')
 
 async function searchExecute(searchTerm) {
   if (searchTerm !== "") {
@@ -67,7 +67,7 @@ async function searchSuggestions(searchTerm) {
     const response = await fetch(urlSearchSuggestions);
     let search = await response.json();
 
-    suggestionsList.innerHTML = "";
+    suggestionsListUl.innerHTML = "";
 
     hrLineSuggestionsCreation()
 
@@ -88,7 +88,7 @@ function hrLineSearchCreation() {
 function hrLineSuggestionsCreation() {
   const hrLine = document.createElement("hr");
   hrLine.classList.add("hr-line-suggestions");
-  suggestionsList.appendChild(hrLine);
+  suggestionsListUl.appendChild(hrLine);
   iconOnSearch.classList.add("icon-onsearch-visible");
 }
 
@@ -111,20 +111,26 @@ function iconSearchCrossCreation() {
 
 function searchSuggestionsCreation(search) {
   for (let i = 0; i <= 3; i++) {
-    const divIcon = document.createElement("div");
-    divIcon.classList.add("div-icon");
-    const liSuggestions = document.createElement("li");
-    liSuggestions.classList.add("li-suggestions");
-    liSuggestions.setAttribute('id', i);
-    const imgIcon = document.createElement("img");
-    imgIcon.classList.add("img-icon");
-    imgIcon.setAttribute("src", "img/icon-onsearch.svg");
+    if (search) {
+      suggestionsListUl.classList.add('suggestions-list');
+      const divIcon = document.createElement("div");
+      divIcon.classList.add("div-icon");
+      const liSuggestions = document.createElement("li");
+      liSuggestions.classList.add("li-suggestions");
+      liSuggestions.setAttribute('id', i);
+      const imgIcon = document.createElement("img");
+      imgIcon.classList.add("img-icon");
+      imgIcon.setAttribute("src", "img/icon-onsearch.svg");
 
-    divIcon.appendChild(imgIcon);
-    divIcon.appendChild(liSuggestions);
-    suggestionsList.appendChild(divIcon);
+      containerSearch.appendChild(suggestionsListUl)
+      suggestionsListUl.appendChild(divIcon)
+      divIcon.appendChild(imgIcon);
+      divIcon.appendChild(liSuggestions);
+      suggestionsListUl.appendChild(divIcon);
 
-    liSuggestions.textContent = capitalizeFirstLetter(search.data[i].name);
+      liSuggestions.textContent = capitalizeFirstLetter(search.data[i].name);
+
+    }
   }
 };
 
@@ -135,11 +141,12 @@ function searchSuggestionsDelete() {
   hrLineSearch.innerHTML = "";
   viewMore.classList.remove('view-more');
   hrLine.classList.remove("hr-line-search");
-  suggestionsList.innerHTML = "";
   searchResults.innerHTML = "";
   iconOnSearch.classList.remove("icon-onsearch-visible");
   searchTitle.innerHTML = "";
   viewMoreContainer.classList.add('display-none')
+  suggestionsListUl.innerHTML = "";
+  suggestionsListUl.classList.remove('suggestions-list');
   if (iconSearchMain.getAttribute('src') === "img/close.svg") {
     iconSearchMain.setAttribute("src", "img/icon-search.svg");
   } else if (iconSearchMain.getAttribute('src') === "img/close-modo-noct.svg") {
@@ -151,13 +158,14 @@ viewMoreContainer.addEventListener('click', () => {
   searchExecute(inputMain.value);
 });
 
-ul.addEventListener('click', (e) => {
+suggestionsListUl.addEventListener('click', (e) => {
   if (e.target.tagName === 'LI' || e.target.tagName === 'DIV') {
     inputMain.value = e.target.textContent;
     OFFSET_COUNTER = 12;
     searchExecute(inputMain.value);
+    suggestionsListUl.classList.remove('suggestions-list');
     setTimeout(() => {
-      suggestionsList.innerHTML = "";
+      suggestionsListUl.innerHTML = "";
     }, 300)
   }
 });
@@ -176,7 +184,7 @@ inputMain.addEventListener("keyup", () => {
 
 inputMain.addEventListener("focusout", (event) => {
   setTimeout(() => {
-    suggestionsList.innerHTML = "";
+    suggestionsListUl.innerHTML = "";
   }, 300)
 });
 
