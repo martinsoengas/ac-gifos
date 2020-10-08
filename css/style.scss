@@ -117,6 +117,7 @@ input {
 }
 
 .container-search {
+  position: relative;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -128,7 +129,6 @@ input {
   border: 1px solid $colorPrimary;
   border-radius: 27px;
   padding: 15px 20px 13px 25px;
-  position: relative;
 }
 
 .icon-onsearch {
@@ -136,16 +136,23 @@ input {
 }
 
 #suggestions-list {
+  position: absolute;
   display: flex;
   flex-direction: column;
-  bottom: -50px;
-  width: 100%;
-  background-color: transparent;
+  top: 26px;
+  left: -1px;
+  width: 100.4%;
+     background-color: white;
   list-style-type: none;
+  border-left: 1px solid $colorPrimary;
+  border-right: 1px solid $colorPrimary;
+  border-bottom: 1px solid $colorPrimary;
+  border-radius: 0px 0px 27px 27px;
+  padding: 0px 20px 13px 25px;
+  
 }
 
 .hr-line-suggestions {
-  margin-top: 10px;
   opacity: 0.5;
   border: 1px solid #9cafc3;
 }
@@ -155,6 +162,7 @@ input {
   flex-direction: row;
   width: 100%;
   padding: 10px 0px 10px 2px;
+   background-color: white;
   cursor: pointer;
 /*   &:hover {
     opacity: 0.6;
@@ -168,6 +176,7 @@ input {
   text-align: left;
   font-family: $textRoboto;
   font-weight: 400;
+
 }
 
 .img-icon {
@@ -211,7 +220,7 @@ input {
   margin-top: 10px;
   margin-bottom: 43px;
   opacity: 0.5;
-  border: 1px solid #9cafc3;
+  border-bottom: 1px solid #9cafc3;
 }
 
 .search-title-container {
@@ -609,6 +618,10 @@ input {
     margin-bottom: 95px;
   }
 
+  .hr-line-search {
+    width: 25%;
+  }
+
   .trends {
     padding-top: 67px;
     font-size: 25px;
@@ -710,7 +723,6 @@ input {
 
   .image-fav {
     position: relative;
-    display: inline-block;
     width: 32px;
     height: 32px;
     background: url('../img/icon-fav.svg');
@@ -718,13 +730,13 @@ input {
       background: url('../img/icon-fav-hover.svg');
     }
     &:active{
-      background: url('../img/icon-fav-active.svg');
+      background: white url('../img/icon-fav-active.svg');
+      border-radius: 6px;
     }
   }
 
   .image-download {
     position: relative;
-    display: inline-block;
     width: 32px;
     height: 32px;
     background: url('../img/icon-download.svg');
@@ -735,7 +747,6 @@ input {
 
   .image-max {
     position: relative;
-    display: inline-block;
     width: 32px;
     height: 32px;
     background: url('../img/icon-max-normal.svg');
