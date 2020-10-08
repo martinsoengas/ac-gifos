@@ -211,6 +211,30 @@ getTrending();
 
 // TRENDING GIFS
 const trendsCarousel = document.getElementById("trends-carousel");
+const rightArrow = document.getElementById('right-arrow')
+const leftArrow = document.getElementById('left-arrow')
+let scrollLeft = trendsCarousel.scrollLeft;
+let maxScroll = 3600;
+
+console.log(maxScroll)
+console.log(scrollLeft)
+
+rightArrow.addEventListener('click', () => {
+  if (scrollLeft < maxScroll) {
+    trendsCarousel.scroll(scrollLeft += 150, 0);
+    console.log(scrollLeft)
+  }
+
+})
+
+leftArrow.addEventListener('click', () => {
+  if (scrollLeft >= 150) {
+    trendsCarousel.scroll(scrollLeft -= 150, 0);
+    console.log(scrollLeft)
+  }
+
+})
+
 
 async function getTrendingGifs() {
   let urlTrendingGifs = `${config.baseUrl}/gifs/trending?api_key=${config.API_KEY}&limit=12`;
