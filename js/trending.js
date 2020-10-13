@@ -2,20 +2,23 @@ import { config } from "./config.js";
 
 let OFFSET_COUNTER = 12;
 /* -----------------------------  MAIN SEARCH ----------------------------- */
-const inputMain = document.getElementById("search-main");
-const suggestionsListUl = document.createElement("ul");
-const iconOnSearch = document.getElementById("icon-onsearch");
+const inputMain = document.getElementById("search-main")
+const inputSecondary = document.getElementById('search-secondary')
+const suggestionsListUl = document.createElement("ul")
+const iconOnSearch = document.getElementById("icon-onsearch")
 const searchResults = document.getElementById('search-results')
 const searchTitle = document.getElementById('search-title')
 const searchTitleContainer = document.getElementById('search-title-container')
 const viewMoreContainer = document.getElementById('view-more-container')
 const iconSearchMain = document.getElementById('icon-search-main')
+const iconSearchSecondary = document.getElementById('icon-search-secondary')
 const hrLineSearch = document.getElementById('hr-line-search')
 const hrLine = document.createElement("hr");
 const viewMore = document.createElement('div');
 const noSearchResults = document.getElementById('no-search-results')
 const noSearchImg = document.createElement('img');
 const containerSearch = document.getElementById('container-search')
+
 
 async function searchExecute(searchTerm) {
   if (searchTerm !== "") {
@@ -35,7 +38,7 @@ async function searchExecute(searchTerm) {
       noSearchResults.appendChild(noSearchImg);
 
     } else if (search !== "") {
-      OFFSET_COUNTER = OFFSET_COUNTER + 12;
+      OFFSET_COUNTER += 12;
 
       searchTitle.innerHTML = "";
       searchResults.innerHTML = "";
@@ -74,6 +77,7 @@ function viewMoreCreation() {
 
 viewMoreContainer.addEventListener('click', () => {
   searchExecute(inputMain.value);
+  searchExecute(inputSecondary.value);
 });
 
 
@@ -94,9 +98,6 @@ async function searchSuggestions(searchTerm) {
     searchSuggestionsCreation(search)
 
     containerSearchBorder()
-
-  } else {
-    searchSuggestionsDelete();
   }
 }
 
@@ -118,8 +119,19 @@ function iconSearchCrossCreation() {
     iconSearchMain.setAttribute("src", "img/close-modo-noct.svg");
   }
   iconSearchMain.addEventListener('click', () => {
-    inputMain.value = ""
+    inputMain.value = "";
     searchSuggestionsDelete();
+  })
+}
+
+function iconSearchCrossCreationSecondary() {
+  if (iconSearchSecondary.getAttribute('src') === "img/icon-search.svg") {
+    iconSearchSecondary.setAttribute("src", "img/close.svg");
+  } else if (iconSearchSecondary.getAttribute('src') === "img/icon-search-mod-noc.svg") {
+    iconSearchSecondary.setAttribute("src", "img/close-modo-noct.svg");
+  }
+  iconSearchSecondary.addEventListener('click', () => {
+    inputSecondary.value = "";
   })
 }
 
@@ -201,6 +213,12 @@ inputMain.addEventListener("focusout", (event) => {
   }, 300)
 });
 
+inputSecondary.addEventListener("keyup", (event) => {
+  if (event.keyCode === 13) {
+    searchExecute(inputSecondary.value);
+  }
+});
+
 // TRENDING TERMS
 const trendingFiveContainer = document.getElementById("trending-five");
 const pFive = document.createElement("p");
@@ -251,11 +269,28 @@ async function getTrendingGifs() {
   const urlTrendingGifs = `${config.baseUrl}/gifs/trending?api_key=${config.API_KEY}&limit=12`;
   const response = await fetch(urlTrendingGifs);
   const trending = await response.json();
-
   const data = trending.data;
 
   trendingGifsCreation(data);
 }
+
+/* let getFavoritesArr = localStorage.getItem('favorites');
+JSON.parse(getFavoritesArr)
+console.log(getFavoritesArr)
+if (getFavoritesArr) {
+  var favoritesArr = JSON.parse(localStorage.getItem('favorites'));
+  console.log(favoritesArr)
+} */
+
+
+let getLocal = localStorage.getItem('favorites');
+let favoritesArr = [];
+
+if (getLocal) {
+  favoritesArr = JSON.parse(getLocal);
+}
+
+
 
 function trendingGifsCreation(data) {
   data.forEach((gif) => {
@@ -284,7 +319,27 @@ function trendingGifsCreation(data) {
     imageFav.classList.add("image-fav");
     imageFav.setAttribute('id', gif.id);
 
-    makeFavorite(imageFav, gif)
+    if (getLocal) {
+      if (JSON.parse(getLocal).includes(gif.id)) {
+        imageFav.classList.add("image-fav-active");
+      }
+    }
+
+    imageFav.addEventListener('click', () => {
+      if (!favoritesArr.includes(gif.id)) {
+        favoritesArr.push(gif.id)
+        localStorage.setItem('favorites', JSON.stringify(favoritesArr));
+        imageFav.classList.add("image-fav-active");
+      } else {
+        console.log(favoritesArr)
+        favoritesArr = favoritesArr.filter(element => element !== gif.id)
+        console.log(favoritesArr)
+        localStorage.setItem('favorites', JSON.stringify(favoritesArr));
+        imageFav.classList.remove("image-fav-active");
+      }
+    })
+
+
 
     let imageDownload = document.createElement("a");
     imageDownload.classList.add("image-download");
@@ -312,19 +367,25 @@ getTrendingGifs();
 
 function makeFavorite(imageFav, gif) {
 
-  if (!localStorage.getItem(gif.id)) {
-    imageFav.addEventListener('click', () => {
-      localStorage.setItem("activeClass", 'image-fav-active')
-      imageFav.classList.add(localStorage.getItem("activeClass"));
-      localStorage.setItem(gif.id, gif.id);
-    })
-  } else if (localStorage.getItem(gif.id)) {
-    imageFav.addEventListener('click', () => {
-      imageFav.classList.remove('image-fav-active');
-      localStorage.removeItem(gif.id);
-      console.log("entro putazo")
-    })
-  }
+
+
+  console.log(localStorage.getItem('favorites'))
+
+
+
+  /*   if (!localStorage.getItem(gif.id)) {
+      imageFav.addEventListener('click', () => {
+        localStorage.setItem("activeClass", 'image-fav-active')
+        imageFav.classList.add(localStorage.getItem("activeClass"));
+        localStorage.setItem(gif.id, gif.id);
+      })
+    } else if (localStorage.getItem(gif.id)) {
+      imageFav.addEventListener('click', () => {
+        imageFav.classList.remove('image-fav-active');
+        localStorage.removeItem(gif.id);
+        console.log("entro putazo")
+      })
+    } */
 }
 
 function capitalizeFirstLetter(string) {
