@@ -39,6 +39,7 @@ async function searchExecute(searchTerm) {
 
       searchTitle.innerHTML = "";
       searchResults.innerHTML = "";
+
       iconOnSearch.classList.remove("icon-onsearch-visible");
 
       hrLineSearchCreation()
@@ -61,6 +62,23 @@ async function searchExecute(searchTerm) {
   }
 }
 
+function hrLineSearchCreation() {
+  hrLine.classList.add("hr-line-search");
+  hrLineSearch.appendChild(hrLine);
+}
+
+function viewMoreCreation() {
+  viewMore.classList.add('view-more')
+  viewMoreContainer.appendChild(viewMore);
+}
+
+viewMoreContainer.addEventListener('click', () => {
+  searchExecute(inputMain.value);
+});
+
+
+/* ----------------------------- SUGGESTION LIST ---------------------------- */
+
 async function searchSuggestions(searchTerm) {
   if (searchTerm !== "") {
     let urlSearchSuggestions = `${config.baseUrl}/tags/related/${searchTerm}?api_key=${config.API_KEY}`;
@@ -75,14 +93,15 @@ async function searchSuggestions(searchTerm) {
 
     searchSuggestionsCreation(search)
 
+    containerSearchBorder()
+
   } else {
     searchSuggestionsDelete();
   }
 }
 
-function hrLineSearchCreation() {
-  hrLine.classList.add("hr-line-search");
-  hrLineSearch.appendChild(hrLine);
+function containerSearchBorder() {
+  containerSearch.classList.add('container-search-square-border')
 }
 
 function hrLineSuggestionsCreation() {
@@ -90,11 +109,6 @@ function hrLineSuggestionsCreation() {
   hrLine.classList.add("hr-line-suggestions");
   suggestionsListUl.appendChild(hrLine);
   iconOnSearch.classList.add("icon-onsearch-visible");
-}
-
-function viewMoreCreation() {
-  viewMore.classList.add('view-more')
-  viewMoreContainer.appendChild(viewMore);
 }
 
 function iconSearchCrossCreation() {
@@ -137,6 +151,7 @@ function searchSuggestionsCreation(search) {
 function searchSuggestionsDelete() {
   OFFSET_COUNTER = 12;
   noSearchResults.innerHTML = "";
+  containerSearch.classList.remove('container-search-square-border')
   viewMoreContainer.innerHTML = "";
   hrLineSearch.innerHTML = "";
   viewMore.classList.remove('view-more');
@@ -154,16 +169,13 @@ function searchSuggestionsDelete() {
   }
 }
 
-viewMoreContainer.addEventListener('click', () => {
-  searchExecute(inputMain.value);
-});
-
 suggestionsListUl.addEventListener('click', (e) => {
   if (e.target.tagName === 'LI' || e.target.tagName === 'DIV') {
     inputMain.value = e.target.textContent;
     OFFSET_COUNTER = 12;
     searchExecute(inputMain.value);
     suggestionsListUl.classList.remove('suggestions-list');
+    containerSearch.classList.remove('container-search-square-border')
     setTimeout(() => {
       suggestionsListUl.innerHTML = "";
     }, 300)
@@ -184,22 +196,17 @@ inputMain.addEventListener("keyup", () => {
 
 inputMain.addEventListener("focusout", (event) => {
   setTimeout(() => {
-    suggestionsListUl.innerHTML = "";
+    containerSearch.classList.remove('container-search-square-border')
+    suggestionsListUl.remove();
   }, 300)
 });
-
-function toggleDisplay(e) {
-  e.classList.toggle('display-none')
-}
 
 // TRENDING TERMS
 const trendingFiveContainer = document.getElementById("trending-five");
 const pFive = document.createElement("p");
 pFive.classList.add("trending-words");
 
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
+
 
 async function getTrending() {
   let urlTrending = `${config.baseUrl}/trending/searches?api_key=${config.API_KEY}`;
@@ -224,33 +231,34 @@ const leftArrow = document.getElementById('left-arrow')
 let scrollLeft = trendsCarousel.scrollLeft;
 let maxScroll = 3600;
 
-console.log(maxScroll)
-console.log(scrollLeft)
+trendsCarousel.addEventListener('scroll', () => {
+  scrollLeft = trendsCarousel.scrollLeft;
+})
 
 rightArrow.addEventListener('click', () => {
   if (scrollLeft < maxScroll) {
     trendsCarousel.scroll(scrollLeft += 150, 0);
-    console.log(scrollLeft)
   }
-
 })
 
 leftArrow.addEventListener('click', () => {
-  if (scrollLeft >= 150) {
+  if (scrollLeft >= 0) {
     trendsCarousel.scroll(scrollLeft -= 150, 0);
-    console.log(scrollLeft)
   }
-
 })
 
-
 async function getTrendingGifs() {
-  let urlTrendingGifs = `${config.baseUrl}/gifs/trending?api_key=${config.API_KEY}&limit=12`;
+  const urlTrendingGifs = `${config.baseUrl}/gifs/trending?api_key=${config.API_KEY}&limit=12`;
   const response = await fetch(urlTrendingGifs);
   const trending = await response.json();
-  console.log(trending);
 
-  trending.data.forEach((gif) => {
+  const data = trending.data;
+
+  trendingGifsCreation(data);
+}
+
+function trendingGifsCreation(data) {
+  data.forEach((gif) => {
     let imageContainer = document.createElement("div");
     imageContainer.classList.add("image-container");
 
@@ -274,9 +282,14 @@ async function getTrendingGifs() {
 
     let imageFav = document.createElement("div");
     imageFav.classList.add("image-fav");
+    imageFav.setAttribute('id', gif.id);
 
-    let imageDownload = document.createElement("div");
+    makeFavorite(imageFav, gif)
+
+    let imageDownload = document.createElement("a");
     imageDownload.classList.add("image-download");
+    imageDownload.setAttribute('href', gif.images.original.url)
+    imageDownload.setAttribute('download', "download")
 
     let imageMax = document.createElement("div");
     imageMax.classList.add("image-max");
@@ -287,7 +300,6 @@ async function getTrendingGifs() {
     imageContainer.appendChild(gifImg);
     imageContainer.appendChild(after);
 
-
     after.appendChild(userName);
     after.appendChild(imageTitle);
     after.appendChild(imageIconContainer);
@@ -297,3 +309,26 @@ async function getTrendingGifs() {
 }
 
 getTrendingGifs();
+
+function makeFavorite(imageFav, gif) {
+
+  if (!localStorage.getItem(gif.id)) {
+    imageFav.addEventListener('click', () => {
+      localStorage.setItem("activeClass", 'image-fav-active')
+      imageFav.classList.add(localStorage.getItem("activeClass"));
+      localStorage.setItem(gif.id, gif.id);
+    })
+  } else if (localStorage.getItem(gif.id)) {
+    imageFav.addEventListener('click', () => {
+      imageFav.classList.remove('image-fav-active');
+      localStorage.removeItem(gif.id);
+      console.log("entro putazo")
+    })
+  }
+}
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+
