@@ -2,20 +2,23 @@ import { config } from "./config.js";
 
 let OFFSET_COUNTER = 12;
 /* -----------------------------  MAIN SEARCH ----------------------------- */
-const inputMain = document.getElementById("search-main");
-const suggestionsListUl = document.createElement("ul");
-const iconOnSearch = document.getElementById("icon-onsearch");
+const inputMain = document.getElementById("search-main")
+const inputSecondary = document.getElementById('search-secondary')
+const suggestionsListUl = document.createElement("ul")
+const iconOnSearch = document.getElementById("icon-onsearch")
 const searchResults = document.getElementById('search-results')
 const searchTitle = document.getElementById('search-title')
 const searchTitleContainer = document.getElementById('search-title-container')
 const viewMoreContainer = document.getElementById('view-more-container')
 const iconSearchMain = document.getElementById('icon-search-main')
+const iconSearchSecondary = document.getElementById('icon-search-secondary')
 const hrLineSearch = document.getElementById('hr-line-search')
 const hrLine = document.createElement("hr");
 const viewMore = document.createElement('div');
 const noSearchResults = document.getElementById('no-search-results')
 const noSearchImg = document.createElement('img');
 const containerSearch = document.getElementById('container-search')
+
 
 async function searchExecute(searchTerm) {
   if (searchTerm !== "") {
@@ -35,10 +38,11 @@ async function searchExecute(searchTerm) {
       noSearchResults.appendChild(noSearchImg);
 
     } else if (search !== "") {
-      OFFSET_COUNTER = OFFSET_COUNTER + 12;
+      OFFSET_COUNTER += 12;
 
       searchTitle.innerHTML = "";
       searchResults.innerHTML = "";
+
       iconOnSearch.classList.remove("icon-onsearch-visible");
 
       hrLineSearchCreation()
@@ -61,6 +65,24 @@ async function searchExecute(searchTerm) {
   }
 }
 
+function hrLineSearchCreation() {
+  hrLine.classList.add("hr-line-search");
+  hrLineSearch.appendChild(hrLine);
+}
+
+function viewMoreCreation() {
+  viewMore.classList.add('view-more')
+  viewMoreContainer.appendChild(viewMore);
+}
+
+viewMoreContainer.addEventListener('click', () => {
+  searchExecute(inputMain.value);
+  searchExecute(inputSecondary.value);
+});
+
+
+/* ----------------------------- SUGGESTION LIST ---------------------------- */
+
 async function searchSuggestions(searchTerm) {
   if (searchTerm !== "") {
     let urlSearchSuggestions = `${config.baseUrl}/tags/related/${searchTerm}?api_key=${config.API_KEY}`;
@@ -75,14 +97,12 @@ async function searchSuggestions(searchTerm) {
 
     searchSuggestionsCreation(search)
 
-  } else {
-    searchSuggestionsDelete();
+    containerSearchBorder()
   }
 }
 
-function hrLineSearchCreation() {
-  hrLine.classList.add("hr-line-search");
-  hrLineSearch.appendChild(hrLine);
+function containerSearchBorder() {
+  containerSearch.classList.add('container-search-square-border')
 }
 
 function hrLineSuggestionsCreation() {
@@ -92,11 +112,6 @@ function hrLineSuggestionsCreation() {
   iconOnSearch.classList.add("icon-onsearch-visible");
 }
 
-function viewMoreCreation() {
-  viewMore.classList.add('view-more')
-  viewMoreContainer.appendChild(viewMore);
-}
-
 function iconSearchCrossCreation() {
   if (iconSearchMain.getAttribute('src') === "img/icon-search.svg") {
     iconSearchMain.setAttribute("src", "img/close.svg");
@@ -104,8 +119,19 @@ function iconSearchCrossCreation() {
     iconSearchMain.setAttribute("src", "img/close-modo-noct.svg");
   }
   iconSearchMain.addEventListener('click', () => {
-    inputMain.value = ""
+    inputMain.value = "";
     searchSuggestionsDelete();
+  })
+}
+
+function iconSearchCrossCreationSecondary() {
+  if (iconSearchSecondary.getAttribute('src') === "img/icon-search.svg") {
+    iconSearchSecondary.setAttribute("src", "img/close.svg");
+  } else if (iconSearchSecondary.getAttribute('src') === "img/icon-search-mod-noc.svg") {
+    iconSearchSecondary.setAttribute("src", "img/close-modo-noct.svg");
+  }
+  iconSearchSecondary.addEventListener('click', () => {
+    inputSecondary.value = "";
   })
 }
 
@@ -137,6 +163,7 @@ function searchSuggestionsCreation(search) {
 function searchSuggestionsDelete() {
   OFFSET_COUNTER = 12;
   noSearchResults.innerHTML = "";
+  containerSearch.classList.remove('container-search-square-border')
   viewMoreContainer.innerHTML = "";
   hrLineSearch.innerHTML = "";
   viewMore.classList.remove('view-more');
@@ -154,16 +181,13 @@ function searchSuggestionsDelete() {
   }
 }
 
-viewMoreContainer.addEventListener('click', () => {
-  searchExecute(inputMain.value);
-});
-
 suggestionsListUl.addEventListener('click', (e) => {
   if (e.target.tagName === 'LI' || e.target.tagName === 'DIV') {
     inputMain.value = e.target.textContent;
     OFFSET_COUNTER = 12;
     searchExecute(inputMain.value);
     suggestionsListUl.classList.remove('suggestions-list');
+    containerSearch.classList.remove('container-search-square-border')
     setTimeout(() => {
       suggestionsListUl.innerHTML = "";
     }, 300)
@@ -184,22 +208,23 @@ inputMain.addEventListener("keyup", () => {
 
 inputMain.addEventListener("focusout", (event) => {
   setTimeout(() => {
-    suggestionsListUl.innerHTML = "";
+    containerSearch.classList.remove('container-search-square-border')
+    suggestionsListUl.remove();
   }, 300)
 });
 
-function toggleDisplay(e) {
-  e.classList.toggle('display-none')
-}
+inputSecondary.addEventListener("keyup", (event) => {
+  if (event.keyCode === 13) {
+    searchExecute(inputSecondary.value);
+  }
+});
 
 // TRENDING TERMS
 const trendingFiveContainer = document.getElementById("trending-five");
 const pFive = document.createElement("p");
 pFive.classList.add("trending-words");
 
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
+
 
 async function getTrending() {
   let urlTrending = `${config.baseUrl}/trending/searches?api_key=${config.API_KEY}`;
@@ -224,33 +249,51 @@ const leftArrow = document.getElementById('left-arrow')
 let scrollLeft = trendsCarousel.scrollLeft;
 let maxScroll = 3600;
 
-console.log(maxScroll)
-console.log(scrollLeft)
+trendsCarousel.addEventListener('scroll', () => {
+  scrollLeft = trendsCarousel.scrollLeft;
+})
 
 rightArrow.addEventListener('click', () => {
   if (scrollLeft < maxScroll) {
     trendsCarousel.scroll(scrollLeft += 150, 0);
-    console.log(scrollLeft)
   }
-
 })
 
 leftArrow.addEventListener('click', () => {
-  if (scrollLeft >= 150) {
+  if (scrollLeft >= 0) {
     trendsCarousel.scroll(scrollLeft -= 150, 0);
-    console.log(scrollLeft)
   }
-
 })
 
-
 async function getTrendingGifs() {
-  let urlTrendingGifs = `${config.baseUrl}/gifs/trending?api_key=${config.API_KEY}&limit=12`;
+  const urlTrendingGifs = `${config.baseUrl}/gifs/trending?api_key=${config.API_KEY}&limit=12`;
   const response = await fetch(urlTrendingGifs);
   const trending = await response.json();
-  console.log(trending);
+  const data = trending.data;
 
-  trending.data.forEach((gif) => {
+  trendingGifsCreation(data);
+}
+
+/* let getFavoritesArr = localStorage.getItem('favorites');
+JSON.parse(getFavoritesArr)
+console.log(getFavoritesArr)
+if (getFavoritesArr) {
+  var favoritesArr = JSON.parse(localStorage.getItem('favorites'));
+  console.log(favoritesArr)
+} */
+
+
+let getLocal = localStorage.getItem('favorites');
+let favoritesArr = [];
+
+if (getLocal) {
+  favoritesArr = JSON.parse(getLocal);
+}
+
+
+
+function trendingGifsCreation(data) {
+  data.forEach((gif) => {
     let imageContainer = document.createElement("div");
     imageContainer.classList.add("image-container");
 
@@ -274,9 +317,34 @@ async function getTrendingGifs() {
 
     let imageFav = document.createElement("div");
     imageFav.classList.add("image-fav");
+    imageFav.setAttribute('id', gif.id);
 
-    let imageDownload = document.createElement("div");
+    if (getLocal) {
+      if (JSON.parse(getLocal).includes(gif.id)) {
+        imageFav.classList.add("image-fav-active");
+      }
+    }
+
+    imageFav.addEventListener('click', () => {
+      if (!favoritesArr.includes(gif.id)) {
+        favoritesArr.push(gif.id)
+        localStorage.setItem('favorites', JSON.stringify(favoritesArr));
+        imageFav.classList.add("image-fav-active");
+      } else {
+        console.log(favoritesArr)
+        favoritesArr = favoritesArr.filter(element => element !== gif.id)
+        console.log(favoritesArr)
+        localStorage.setItem('favorites', JSON.stringify(favoritesArr));
+        imageFav.classList.remove("image-fav-active");
+      }
+    })
+
+
+
+    let imageDownload = document.createElement("a");
     imageDownload.classList.add("image-download");
+    imageDownload.setAttribute('href', gif.images.original.url)
+    imageDownload.setAttribute('download', "download")
 
     let imageMax = document.createElement("div");
     imageMax.classList.add("image-max");
@@ -287,7 +355,6 @@ async function getTrendingGifs() {
     imageContainer.appendChild(gifImg);
     imageContainer.appendChild(after);
 
-
     after.appendChild(userName);
     after.appendChild(imageTitle);
     after.appendChild(imageIconContainer);
@@ -297,3 +364,32 @@ async function getTrendingGifs() {
 }
 
 getTrendingGifs();
+
+function makeFavorite(imageFav, gif) {
+
+
+
+  console.log(localStorage.getItem('favorites'))
+
+
+
+  /*   if (!localStorage.getItem(gif.id)) {
+      imageFav.addEventListener('click', () => {
+        localStorage.setItem("activeClass", 'image-fav-active')
+        imageFav.classList.add(localStorage.getItem("activeClass"));
+        localStorage.setItem(gif.id, gif.id);
+      })
+    } else if (localStorage.getItem(gif.id)) {
+      imageFav.addEventListener('click', () => {
+        imageFav.classList.remove('image-fav-active');
+        localStorage.removeItem(gif.id);
+        console.log("entro putazo")
+      })
+    } */
+}
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+

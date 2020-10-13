@@ -129,6 +129,10 @@ input {
   border: 1px solid $colorPrimary;
   border-radius: 27px;
   padding: 15px 20px 13px 25px;
+  &-square-border {
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
 }
 
 .icon-onsearch {
@@ -139,7 +143,7 @@ input {
   position: absolute;
   display: flex;
   flex-direction: column;
-  top: 35px;
+  top: 45px;
   left: -1px;
   width: 100.4%;
      background-color: white;
@@ -729,9 +733,12 @@ input {
     &:hover{
       background: url('../img/icon-fav-hover.svg');
     }
-    &:active{
-      background: white url('../img/icon-fav-active.svg');
+    &-active{
+      background: white no-repeat center/55% url('../img/icon-fav-active.svg');
       border-radius: 6px;
+      &:hover {
+        background: white no-repeat center/55% url('../img/icon-fav-active.svg');
+      }
     }
   }
 

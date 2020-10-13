@@ -150,6 +150,11 @@ input {
   padding: 15px 20px 13px 25px;
 }
 
+.container-search-square-border {
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
 .icon-onsearch {
   display: none;
 }
@@ -163,7 +168,7 @@ input {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  top: 35px;
+  top: 45px;
   left: -1px;
   width: 100.4%;
   background-color: white;
@@ -788,9 +793,12 @@ input {
   .image-fav:hover {
     background: url("../img/icon-fav-hover.svg");
   }
-  .image-fav:active {
-    background: white url("../img/icon-fav-active.svg");
+  .image-fav-active {
+    background: white no-repeat center/55% url("../img/icon-fav-active.svg");
     border-radius: 6px;
+  }
+  .image-fav-active:hover {
+    background: white no-repeat center/55% url("../img/icon-fav-active.svg");
   }
   .image-download {
     position: relative;
