@@ -19,7 +19,6 @@ const noSearchResults = document.getElementById('no-search-results')
 const noSearchImg = document.createElement('img');
 const containerSearch = document.getElementById('container-search')
 
-
 async function searchExecute(searchTerm) {
   if (searchTerm !== "") {
     let urlSearch = `${config.baseUrl}/gifs/search?api_key=${config.API_KEY}&q=${searchTerm}&limit=${OFFSET_COUNTER}`;
@@ -54,12 +53,80 @@ async function searchExecute(searchTerm) {
       viewMoreCreation()
       viewMoreContainer.classList.remove('display-none')
 
-      search.data.forEach(e => {
-        let gifImgs = e.images.original.url;
-        const gifImgContainer = document.createElement('img')
-        gifImgContainer.classList.add('img-gifs')
-        gifImgContainer.setAttribute('src', gifImgs)
-        searchResults.appendChild(gifImgContainer)
+      search.data.forEach(gif => {
+        /*         let gifImgs = e.images.original.url;
+                const gifImgContainer = document.createElement('img')
+                gifImgContainer.classList.add('img-gifs')
+                gifImgContainer.setAttribute('src', gifImgs)
+                searchResults.appendChild(gifImgContainer) */
+        ///////////
+
+        let imageContainer = document.createElement("div");
+        imageContainer.classList.add("image-container-search");
+
+        let gifImg = document.createElement("img");
+        gifImg.setAttribute("src", gif.images.original.url);
+        gifImg.classList.add("image-search-results");
+
+        let afterSearch = document.createElement("div");
+        afterSearch.classList.add("after-search");
+
+        let userName = document.createElement("div");
+        userName.classList.add("image-user");
+        userName.textContent = gif.username ? gif.username : "User Not Registered";
+
+        let imageTitle = document.createElement("div");
+        imageTitle.classList.add("image-title");
+        imageTitle.textContent = gif.title;
+
+        let imageIconContainer = document.createElement('div');
+        imageIconContainer.classList.add('image-icon-container');
+
+        let imageFav = document.createElement("div");
+        imageFav.classList.add("image-fav");
+        imageFav.setAttribute('id', gif.id);
+
+        if (getLocal) {
+          if (JSON.parse(getLocal).includes(gif.id)) {
+            imageFav.classList.add("image-fav-active");
+          }
+        }
+
+        imageFav.addEventListener('click', () => {
+          if (!favoritesArr.includes(gif.id)) {
+            favoritesArr.push(gif.id)
+            localStorage.setItem('favorites', JSON.stringify(favoritesArr));
+            imageFav.classList.add("image-fav-active");
+          } else {
+            console.log(favoritesArr)
+            favoritesArr = favoritesArr.filter(element => element !== gif.id)
+            console.log(favoritesArr)
+            localStorage.setItem('favorites', JSON.stringify(favoritesArr));
+            imageFav.classList.remove("image-fav-active");
+          }
+        })
+
+        let imageDownload = document.createElement("a");
+        imageDownload.classList.add("image-download");
+        imageDownload.setAttribute('href', gif.images.original.url)
+        imageDownload.setAttribute('download', "download")
+
+        let imageMax = document.createElement("div");
+        imageMax.classList.add("image-max");
+
+        imageIconContainer.appendChild(imageFav)
+        imageIconContainer.appendChild(imageDownload)
+        imageIconContainer.appendChild(imageMax)
+        imageContainer.appendChild(gifImg);
+        imageContainer.appendChild(afterSearch);
+
+        afterSearch.appendChild(userName);
+        afterSearch.appendChild(imageTitle);
+        afterSearch.appendChild(imageIconContainer);
+
+        searchResults.appendChild(imageContainer);
+
+
       });
     }
   }
@@ -274,23 +341,12 @@ async function getTrendingGifs() {
   trendingGifsCreation(data);
 }
 
-/* let getFavoritesArr = localStorage.getItem('favorites');
-JSON.parse(getFavoritesArr)
-console.log(getFavoritesArr)
-if (getFavoritesArr) {
-  var favoritesArr = JSON.parse(localStorage.getItem('favorites'));
-  console.log(favoritesArr)
-} */
-
-
 let getLocal = localStorage.getItem('favorites');
 let favoritesArr = [];
 
 if (getLocal) {
   favoritesArr = JSON.parse(getLocal);
 }
-
-
 
 function trendingGifsCreation(data) {
   data.forEach((gif) => {
@@ -364,29 +420,6 @@ function trendingGifsCreation(data) {
 }
 
 getTrendingGifs();
-
-function makeFavorite(imageFav, gif) {
-
-
-
-  console.log(localStorage.getItem('favorites'))
-
-
-
-  /*   if (!localStorage.getItem(gif.id)) {
-      imageFav.addEventListener('click', () => {
-        localStorage.setItem("activeClass", 'image-fav-active')
-        imageFav.classList.add(localStorage.getItem("activeClass"));
-        localStorage.setItem(gif.id, gif.id);
-      })
-    } else if (localStorage.getItem(gif.id)) {
-      imageFav.addEventListener('click', () => {
-        imageFav.classList.remove('image-fav-active');
-        localStorage.removeItem(gif.id);
-        console.log("entro putazo")
-      })
-    } */
-}
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
