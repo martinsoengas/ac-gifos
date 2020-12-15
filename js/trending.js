@@ -72,15 +72,15 @@ async function searchExecute(searchTerm) {
         afterSearch.classList.add("after-search");
 
         let userName = document.createElement("div");
-        userName.classList.add("image-user");
+        userName.classList.add("image-user-search");
         userName.textContent = gif.username ? gif.username : "User Not Registered";
 
         let imageTitle = document.createElement("div");
-        imageTitle.classList.add("image-title");
+        imageTitle.classList.add("image-title-search");
         imageTitle.textContent = gif.title;
 
         let imageIconContainer = document.createElement('div');
-        imageIconContainer.classList.add('image-icon-container');
+        imageIconContainer.classList.add('image-icon-container-search');
 
         let imageFav = document.createElement("div");
         imageFav.classList.add("image-fav");

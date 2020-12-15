@@ -797,6 +797,43 @@ input {
     width: 260px;
     height: 200px;
   }
+  .image-icon-container-search {
+    position: absolute;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    left: 152px;
+    width: 38%;
+    height: 32px;
+    top: 10px;
+  }
+  .image-user-search {
+    position: absolute;
+    left: 14px;
+    top: 130px;
+    font-family: Roboto, sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    color: #ffffff;
+    line-height: 0;
+  }
+  .image-title-search {
+    position: absolute;
+    width: 200px;
+    left: 14px;
+    top: 150px;
+    font-family: Roboto, sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #ffffff;
+  }
   .image-carousel {
     width: 357px;
     height: 275px;
